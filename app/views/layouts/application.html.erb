@@ -9,6 +9,100 @@
   </head>
 
   <body>
+  	<nav class="navbar navbar-default navbar-static-top">
+        <div class="row header-container">
+            <div class="col-xs-1">
+                <div class="logo">
+                    BS
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <form class="input-group search-bar">
+                    <div class="input-group-btn search-panel filter-holder">
+                        <select name="category">
+                            <option>All category</option>
+                            <option>Category 1</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">         
+                    <input type="text" class="form-control" name="x" placeholder="Search term...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default search-button" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </form>
+            </div>
+            <div class="col-xs-4">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                        <!--<li><a href="{{ route('login') }}">Login</a></li>-->
+                        <!--<li><a href="{{ route('register') }}">Register</a></li>-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Username <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Shopping cart</a></li>
+                                <li>
+                                    <a href="#"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="#" method="POST" style="display: none;">
+                                        csrf_field
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <%= yield %>
+    <!-- footer -->
+    <div class="footer">
+        <div class="container text-center">
+        <hr />
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="#">Product for Mac</a></li>
+              <li><a href="#">Product for Windows</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="#">Web analytics</a></li>
+              <li><a href="#">Presentations</a></li>          
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="#">Product Help</a></li>
+              <li><a href="#">Developer API</a></li>
+            </ul>
+          </div>  
+        </div>
+      </div>
+      <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="/">© 2013 Company Name.</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
   </body>
 </html>
