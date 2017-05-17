@@ -1,6 +1,23 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-p {
-    color: red;
+.home-container {
+    margin-top: 20px;
+}
+
+.category-container {
+    min-height: 500px;
+    border-right: 1px solid #CCCCCC;
+}
+
+.bookcover-block {
+    margin-bottom: 30px;
+}
+
+.bookcover-container {
+    text-align: center;
+}
+
+.load-more {
+    text-align: center;
 }
