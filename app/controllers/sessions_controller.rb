@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+
+  def show
+    @user = current_user
+  end
+
   def new
   end
 
@@ -7,7 +12,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash[:success] = 'Login Success' # Not quite right!
       log_in user
-      redirect_to home_path
+      redirect_to root_path
       # Log the user in and redirect to the user's show page.
     else
       # Create an error message.
@@ -18,6 +23,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to home_path
+    redirect_to root_path
   end
 end
