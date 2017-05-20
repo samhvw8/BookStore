@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
 
+  get '/profile', to: 'sessions#show', as: 'profile'
   get '/signup', to: 'users#new', as: 'get_signup'
   post '/signup', to: 'users#create', as: 'post_signup'
 
@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create', as: 'post_login'
   delete '/logout',  to: 'sessions#destroy', as: 'logout'
 
+  resources :users, except: [:index]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'home/index', as: 'home'
-  get 'book/manage'
+  get '/', to: 'home#index', as: 'root'
+
 end
