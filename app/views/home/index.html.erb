@@ -39,67 +39,36 @@
 <div class="container home-container">
     <div class="row">
         <div class="col-xs-3 col-md-2 category-container">
+            <% if @categories.blank? %>
+                There are not any categories currently in the system
+            <% else %>
             <ul>
+                <% @categories.each do |category| %>
                 <li>
-                    <a href="#">Category 1</a>
+                    <a href="#"><% category.title %></a>
                 </li>
-                <li>
-                    <a href="#">Category 2</a>
-                </li>
-            </ul>         
+                <% end %>
+            </ul>
+            <% end %>         
         </div>
         <div class="col-xs-9 col-md-10">
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
-                    <div class="bookcover-container">
-                        <a href="#">
-                            <img src="/images/bookcover/cover1.jpg" alt="book title">
-                            <div class="book-title">
-                                Book title
-                            </div>
-                        </a>
+                <% if @books.blank? %>
+                <h3>There is no books</h3>
+                <% else %>
+                    <% @books.each do |book| %>
+                    <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
+                        <div class="bookcover-container">
+                            <a href="#">
+                                <img src="/images/bookcover/cover1.jpg" alt="book title">
+                                <div class="book-title">
+                                    <% book.title %>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
-                    <div class="bookcover-container">
-                        <a href="#">
-                            <img src="/images/bookcover/cover1.jpg" alt="book title">
-                            <div class="book-title">
-                                Book title
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
-                    <div class="bookcover-container">
-                        <a href="#">
-                            <img src="/images/bookcover/cover1.jpg" alt="book title">
-                            <div class="book-title">
-                                Book title
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
-                    <div class="bookcover-container">
-                        <a href="#">
-                            <img src="/images/bookcover/cover1.jpg" alt="book title">
-                            <div class="book-title">
-                                Book title
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
-                    <div class="bookcover-container">
-                        <a href="#">
-                            <img src="/images/bookcover/cover1.jpg" alt="book title">
-                            <div class="book-title">
-                                Book title
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                    <% end %>
+                <% end %>
             </div>
             <div class="row load-more">
                 <a href="#">Load more...</a>
