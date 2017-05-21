@@ -26,7 +26,7 @@
           </select>
         </div>
         <input type="hidden" name="search_param" value="all" id="search_param">
-        <input type="text" class="form-control" name="x" placeholder="Search term...">
+        <input type="text" class="form-control input-search" name="x" placeholder="Search term...">
         <span class="input-group-btn">
                         <button class="btn btn-default search-button" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
@@ -63,24 +63,22 @@
     </div>
   </div>
 </nav>
-<div class="container">
-  <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-  <% end %>
-  <%= yield %>
-  <!-- footer -->
-  <div class="footer">
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+<%= yield %>
+<!-- footer -->
+<div class="footer">
 
-    <div class="row">
-      <div class="col-lg-12">
-        <ul class="nav nav-pills nav-justified">
-          <li>© 2013 HLSS</li>
-        </ul>
-      </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="nav nav-pills nav-justified">
+        <li>© 2013 HLSS</li>
+      </ul>
     </div>
   </div>
-  <%= debug(params) if Rails.env.development? %>
 </div>
+<%= debug(params) if Rails.env.development? %>
 
 
 </body>
