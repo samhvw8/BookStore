@@ -1,0 +1,107 @@
+<div class="container">
+  <h1>Cart</h1>
+  <% if @order.blank? || @order.order_books.blank? %>
+
+      <h4>Cart Empty !</h4>
+
+  <% else %>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Book Qty</th>
+          <th>Price</th>
+          <th>Order Qty</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% total = 0 %>
+        <% @order.order_books.each do |order_book| %>
+
+
+            <tr>
+
+              <td scope="row">
+
+                <%= link_to books_path(order_book.book) do %>
+                    <div class="book-title">
+                      <%= order_book.book.title %>
+                    </div>
+                <% end %>
+
+              </td>
+
+              <td scope="row">
+
+                <% if order_book.book.authors.count == 1 %>
+
+                    <%= order_book.book.authors.name %>
+
+                <% else
+                     if order_book.book.authors.count > 1 %>
+                        <% authors = order_book.book.authors.first 2 %>
+
+                        <% authors.each do |author| %>
+
+                            <%= author.name %>,
+
+                        <% end %>
+                        ...
+
+                    <% end %>
+                <% end %>
+              </td>
+
+              <td scope="row"> <%= order_book.book.qty %></td>
+
+              <td scope="row"> <%= order_book.price %></td>
+
+              <td scope="row">
+
+                <%= order_book.qty %>
+
+              </td>
+
+              <td scope="row">
+
+                <!--<span class="glyphicon glyphicon-edit"></span>-->
+                <!--<%# link_to 'Edit', order_books_path(order_book, :qty) %>-->
+
+                <span class="glyphicon glyphicon-trash"></span>
+                <%= link_to 'Delete', delete_order_books_path(order_book), method: :delete, data: {confirm: "Are You Sure?"}%>
+
+              </td>
+
+
+            </tr>
+
+            <% total = total + order_book.price * order_book.qty %>
+
+        <% end %>
+
+        <tr>
+
+          <td scope="row"></td>
+
+          <td scope="row"></td>
+
+          <td scope="row"></td>
+
+          <td scope="row"></td>
+
+          <th scope="row"> Total</th>
+
+          <td scope="row"> <%= total %></td>
+
+
+        </tr>
+
+        </tbody>
+      </table>
+
+  <% end %>
+
+</div>

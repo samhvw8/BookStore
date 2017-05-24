@@ -69,7 +69,7 @@ categories = Category.all()
 for book in books do
 
   Faker::Number.between(1, 3).times do
-    book.categories << categories.sample
+    book.add_category(categories.sample)
   end
 
 end

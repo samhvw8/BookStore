@@ -1,4 +1,9 @@
-class BookController < ApplicationController
+class BooksController < ApplicationController
+
+  def show
+    @book = Book.find params[:id]
+  end
+
   def manage
     @authors = Author.all
     @category = Category.all
