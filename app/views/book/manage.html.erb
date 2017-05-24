@@ -24,7 +24,9 @@
 						</form>
 	    			</div>
 	    			<div class="pull-right">
-	    				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#book-modal">New Book</button>
+              <%= link_to book_get_create_path do %>
+                <button type="button" class="btn btn-success">New Book</button>
+              <% end %>
 	    			</div>
     			</div>
     		</div>
@@ -56,94 +58,5 @@
 
     		 $books->links() 
     	</div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="book-modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add new book</h4>
-            </div>
-            <div class="modal-body">
-
-                <%= form_tag({controller: "book", action: "create"}, method: "post",
-                             class: "form-horizontal", id: "add-book-form", multipart: true) do %>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="title">Title:</label>
-                        <div class="col-sm-10">
-                            <%= text_field(:book, :title, class: 'form-control') %>
-                        </div>
-                    </div>
-                    <div class="form-group author-form">
-                        <label class="control-label col-sm-2" for="author">Authors:</label>
-                        <% if !@author.blank? %>
-                            <% 4.times do |i| %>
-                                <div class="col-sm-2"> 
-                                    <select class="form-control" id="sel1">
-                                        <% @authors.each do |author| %>
-                                        <option><% author.name %></option>
-                                        <% end %>
-                                    </select>
-                                </div>
-                            <% end %>
-                        <% end %>
-                        <div class="col-sm-2"> 
-                            <button id="new-author-btn" type="button" class="btn btn-success">New Author</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="price">Price:</label>
-                        <div class="col-sm-10">
-                          <%= number_field(:book, :price, in: 1.0..10000000.0, step: 1, class: 'form-control') %>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="qty">Quantity:</label>
-                        <div class="col-sm-10">
-                          <%= number_field(:book, :qty, in: 1.0..10000.0, step: 1, class: 'form-control') %>
-                        </div>
-                    </div>
-                    <div class="form-group category-form"> 
-                        <label class="control-label col-sm-2">Categories:</label>
-                        <div class="col-sm-10">
-                            <% if !@categories.blank? %>
-                                <% @categories.each do |category| %>
-                                    <div class="col-sm-3">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox"> <% category.title %></label>
-                                        </div>
-                                    </div>
-                                <% end %>
-                            <% end %>
-                            <div class="col-sm-2 no-left-padding"> 
-                                <button id="new-category-btn" type="button" class="btn btn-success">New Category</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="image">Cover image:</label>
-                        <div class="col-sm-10">
-                            <%= file_field(:book, :image, class: 'form-control') %>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="intro">Introduction:</label>
-                        <div class="col-sm-10">
-                            <textarea id="intro" name="intro" class="form-control"></textarea> 
-                        </div>
-                    </div>
-                <% end %>
-            </div>
-            <div class="modal-footer">
-                <button id="add-book-btn" type="submit" class="btn btn-success">Add</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
     </div>
 </div>
