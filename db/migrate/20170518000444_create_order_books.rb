@@ -6,6 +6,7 @@ class CreateOrderBooks < ActiveRecord::Migration[5.0]
       t.integer :qty
       t.decimal :price, precision: 10, scale: 2
       t.timestamps
+      t.index [:book_id, :order_id], unique: true
     end
   end
 end
