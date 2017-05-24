@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   has_many :subscribes
   has_many :order_books
   validates :title, presence: true, allow_blank: false
-  validates :price, :numericality => {:greater_than => 0}, :on => :update
-  validates_numericality_of :qty, :numericality => {:greater_than => 0}, :on => :update, :only_integer => true
+  validates :price, numericality: {:greater_than => 0}, :on => :update
+  validates_numericality_of :qty, numericality: {:greater_than_or_equal_to => 0, :only_integer => true}, :on => :update
 
 end
