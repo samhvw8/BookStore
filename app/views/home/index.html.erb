@@ -59,7 +59,7 @@
             <% @books.each do |book| %>
                 <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
                   <div class="bookcover-container">
-                    <%= link_to books_path(book) do %>
+                    <%= link_to book_path(book) do %>
                         <img src="/images/bookcover/cover1.jpg" alt="book title">
                         <div class="book-title">
                           <%= book.title %>

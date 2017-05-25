@@ -1,13 +1,13 @@
 class CartsController < ApplicationController
   def show
     session.delete(:add_to_cart)
-    @order = current_user.get_order()
+    @order = current_user.get_order
   end
 
   def update
     book = Book.find params[:id]
 
-    order = current_user.get_order()
+    order = current_user.get_order
 
     order_book = OrderBook.new(book: book, price: book.price, qty: 1)
 
@@ -20,7 +20,7 @@ class CartsController < ApplicationController
       session.delete(:add_to_cart)
     end
 
-    redirect_to books_path(params[:id])
+    redirect_to book_path(params[:id])
   end
 
   def destroy
