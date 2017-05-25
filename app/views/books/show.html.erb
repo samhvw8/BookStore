@@ -20,14 +20,16 @@
 
         <% else
              if @book.authors.count > 1 %>
-                <% authors = @book.authors.first 2 %>
 
-                <% authors.each do |author| %>
+                <% @book.authors.each do |author| %>
 
-                    <%= author.name %>,
+                    <%= link_to author_path(author) do %>
+                        <span><%= author.name %></span>
+
+                    <% end %>
+
 
                 <% end %>
-                ...
 
             <% end %>
         <% end %>
