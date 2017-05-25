@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 ">
+      <div class="bookcover-container">
+
+        <!--<img class="center-block" src={{'/storage/coversbooksbook->image}} alt="">-->
+
+      </div>
+
+    </div>
+
+    <div class="col-md-8">
+      <h1 id="bookTitle"><%= @book.title %></h1>
+
+      <div id="bookAuthors">
+        <span class="by smallText">by</span>
+        <% if @book.authors.count == 1 %>
+
+            <%= @book.authors.name %>
+
+        <% else
+             if @book.authors.count > 1 %>
+                <% authors = @book.authors.first 2 %>
+
+                <% authors.each do |author| %>
+
+                    <%= author.name %>,
+
+                <% end %>
+                ...
+
+            <% end %>
+        <% end %>
+
+      </div>
+
+      <div id="bookQty">
+        <span class="title">Qty: </span>
+        <span><%= @book.qty %></span>
+      </div>
+
+
+      <div id="bookPrice">
+        <span class="title">Price: </span>
+        <span><%= @book.price %></span>
+
+        <% if logged_in? %>
+
+            <% if @book.qty > 0 %>
+
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <%= link_to 'Add To Cart', add_to_cart_url(@book), method: :put %>
+
+                <% if session[:add_to_cart].nil? == false && session[:add_to_cart] == true %>
+
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <%= link_to 'Go to cart', carts_url %>
+
+                <% end %>
+
+
+            <% else %>
+
+
+
+            <% end %>
+
+        <% end %>
+
+
+      </div>
+
+
+      <div id="bookDescription">
+        <h3>Description</h3>
+        <span><%= @book.description %></span>
+      </div>
+
+    </div>
+  </div>
+</div>
