@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   get 'manage/books/', to: 'books#manage', as: 'books_management'
 
 
+  resources :categories
 end
