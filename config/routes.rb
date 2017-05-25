@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # Book management routes
   get '/book/manage', to: 'book#manage', as: 'book_management'
+  get '/book/new', to: 'book#new', as: 'book_new'
   post 'book/manage/create', to:'book#create', as: 'book_create'
 
 end
