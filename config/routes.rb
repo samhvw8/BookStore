@@ -24,13 +24,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/', to: 'home#index', as: 'root'
 
-  get 'books/:id', to: 'books#show', as: 'books'
 
   # Book management routes
 
-  get '/books/new', to: 'books#new', as: 'book_new'
-  post '/books', to: 'books#create', as: 'book_create'
+
   get 'manage/books/', to: 'books#manage', as: 'books_management'
+
+  resources :books, only: [:show, :new, :create]
 
 
   resources :categories
