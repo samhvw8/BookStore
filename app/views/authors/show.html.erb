@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <p>Author Name: <%= @author.name %></p></div>
+    <div class="row">
+      <p>Bio: <%= @author.bio %></p>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Book Qty</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @author.books.each do |book| %>
+
+
+          <tr>
+
+            <td scope="row">
+
+              <%= link_to book_path(book) do %>
+                  <div class="book-title">
+                    <%= book.title %>
+                  </div>
+              <% end %>
+
+            </td>
+
+            <td scope="row">
+
+              <% if book.authors.count == 1 %>
+
+                  <%= @author.name %>
+
+              <% else
+                   if book.authors.count > 1 %>
+
+                      <% authors = book.authors.first 2 %>
+
+                      <% authors.each do |author| %>
+
+                          <%= link_to author_path(author) do %>
+                              <%= author.name %>,
+                          <% end %>
+
+
+                      <% end %>
+                      ...
+
+                  <% end %>
+              <% end %>
+            </td>
+
+            <td scope="row"> <%= book.qty %></td>
+
+            <td scope="row"> <%= book.price %></td>
+
+          </tr>
+
+
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>

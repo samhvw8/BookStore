@@ -26,7 +26,7 @@
 
               <td scope="row">
 
-                <%= link_to books_path(order_book.book) do %>
+                <%= link_to book_path(order_book.book) do %>
                     <div class="book-title">
                       <%= order_book.book.title %>
                     </div>
@@ -46,7 +46,10 @@
 
                         <% authors.each do |author| %>
 
-                            <%= author.name %>,
+                            <%= link_to author_path(author) do %>
+                                <span><%= author.name %></span>
+
+                            <% end %>
 
                         <% end %>
                         ...
@@ -71,7 +74,7 @@
                 <!--<%# link_to 'Edit', order_books_path(order_book, :qty) %>-->
 
                 <span class="glyphicon glyphicon-trash"></span>
-                <%= link_to 'Delete', delete_order_books_path(order_book), method: :delete, data: {confirm: "Are You Sure?"}%>
+                <%= link_to 'Delete', delete_order_books_path(order_book), method: :delete, data: {confirm: "Are You Sure?"} %>
 
               </td>
 
