@@ -46,28 +46,6 @@
         <span class="title">Price: </span>
         <span><%= @book.price %></span>
 
-        <% if logged_in? %>
-
-            <% if @book.qty > 0 %>
-
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                <%= link_to 'Add To Cart', add_to_cart_url(@book), method: :put %>
-
-                <% if session[:add_to_cart].nil? == false && session[:add_to_cart] == true %>
-
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                    <%= link_to 'Go to cart', carts_url %>
-
-                <% end %>
-
-
-            <% else %>
-
-
-
-            <% end %>
-
-        <% end %>
 
 
       </div>

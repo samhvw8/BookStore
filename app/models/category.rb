@@ -1,10 +1,15 @@
 class Category < ApplicationRecord
-  has_and_belongs_to_many :books
   has_many :children, :class_name => "Category", :foreign_key => "parent_id", :dependent => :destroy
   belongs_to :parent, :class_name => "Category", required: false
   validates :title, presence: true, allow_blank: false
+  has_many :category_readings
 
-  def add_book(book)
-    books << book unless books.include?(book)
+  def readings
+    category_readings.map(&:reading)
+  end
+
+
+  def add_reading(reading)
+    readings << reading unless readings.include?(reading)
   end
 end
