@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170526181411) do
 
-  create_table "author_readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "author_readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "author_id"
     t.string   "reading_type"
     t.integer  "reading_id"
@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["reading_type", "reading_id"], name: "index_author_readings_on_reading_type_and_reading_id", using: :btree
   end
 
-  create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.text     "bio",        limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "parent_id"
     t.string   "title"
     t.datetime "created_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["parent_id"], name: "index_categories_on_parent_id", using: :btree
   end
 
-  create_table "catergory_readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "catergory_readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "category_id"
     t.string   "reading_type"
     t.integer  "reading_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["reading_type", "reading_id"], name: "index_catergory_readings_on_reading_type_and_reading_id", using: :btree
   end
 
-  create_table "chapters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "chapters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "reading_type"
     t.integer  "reading_id"
     t.string   "no"
@@ -57,14 +57,14 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["reading_type", "reading_id"], name: "index_chapters_on_reading_type_and_reading_id", using: :btree
   end
 
-  create_table "comics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "chapter_id"
     t.string   "content_element_type"
     t.integer  "content_element_id"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["content_element_type", "content_element_id"], name: "index_contents_on_content_element_type_and_content_element_id", using: :btree
   end
 
-  create_table "image_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "image_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -83,14 +83,14 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.datetime "image_updated_at"
   end
 
-  create_table "novels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "novels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
     t.integer  "book_id"
     t.text     "review",     limit: 65535
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
-  create_table "subscribes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "subscribes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
     t.string   "reading_type"
     t.integer  "reading_id"
@@ -112,13 +112,13 @@ ActiveRecord::Schema.define(version: 20170526181411) do
     t.index ["user_id"], name: "index_subscribes_on_user_id", using: :btree
   end
 
-  create_table "text_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "text_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.text     "txt_content", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "email"
     t.boolean  "is_admin",        default: false
