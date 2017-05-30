@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'authors/new'
+  end
+
+  namespace :admin do
+    get 'authors/create'
+  end
+
   resources :novels, only: [:index, :show ]
 
   resources :comics, only: [:index, :show ]
@@ -20,12 +28,13 @@ Rails.application.routes.draw do
 
   resources :chapters, only: [:show]
 
-  resources :categories, only: [:show, :index]
+  resources :categories
 
   resources :authors, only: [:show, :new, :create]
 
   namespace :admin do
     resources :novels
+    resource :authors
   end
 
 end

@@ -21,3 +21,24 @@ $(document).on('click', '.clickable-row', function () {
     var link = $(this).data('link');
     Turbolinks.visit(link);
 });
+
+$(document).ready(function () {
+    $('#new_author').on('ajax:success', function (e, data, status, xhr) {
+        if (data.hasOwnProperty('id')) {
+            // success
+            $('#add-author-modal').modal('hide');
+            $('#new_author')[0].reset();
+            $('.error-container').html('');
+            $('#add-author-btn').before(data.id);
+        } else {
+            // fail
+            for (var property in data) {
+                if (data.hasOwnProperty(property)) {
+                    $('#add-author-modal .error-container').append(property + ' ' + data[property] + '<br>' );
+                }
+            }
+        }
+    }).on('ajax:error', function (e, xhr, status, error) {
+        $('#add-author-modal .error-container').html("Error: the name can't be blank");
+    })
+});
