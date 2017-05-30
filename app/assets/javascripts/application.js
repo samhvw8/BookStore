@@ -15,3 +15,9 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('click', '.clickable-row', function () {
+    var link = $(this).data('link');
+    Turbolinks.visit(link);
+});

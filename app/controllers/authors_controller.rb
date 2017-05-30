@@ -9,7 +9,7 @@ class AuthorsController < ApplicationController
     @author = Author.new(author_params)
 
     if @author.save
-      redirect_to book_new_path
+      redirect_to reading_new_path
     else
       render 'new'
     end
@@ -19,6 +19,5 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find(params[:id])
-
   end
 end

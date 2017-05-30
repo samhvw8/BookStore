@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to book_new_path
+      redirect_to reading_new_path
     else
       render 'new'
     end

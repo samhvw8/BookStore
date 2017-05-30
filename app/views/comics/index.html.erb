@@ -1,0 +1,27 @@
+<div class="container home-container">
+  <div class="row">
+    <div class="col-xs-9 col-md-10">
+      <div class="row">
+        <% if @comics.blank? %>
+            <h3>There is no comics</h3>
+        <% else %>
+            <% @comics.each do |comic| %>
+                <div class="col-xs-6 col-sm-6 col-md-4 reading-cover-block">
+                  <div class="reading-cover-container">
+                    <%= link_to comic_path(comic) do %>
+                        <img src="/images/bookcover/cover1.jpg" alt="book title">
+                        <div class="reading-title">
+                          <%= comic.title %>
+                        </div>
+                    <% end %>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+      <%= paginate @comics %>
+    </div>
+
+
+  </div>
+</div>
