@@ -29,7 +29,7 @@
       <div class="row">
 
 
-          Subscribe
+        Subscribe
 
 
         <%= link_to novel_subscribes_url(@novel), method: :post do %>
@@ -112,6 +112,87 @@
 
 
   <% end %>
+
+
+  <div class="row">
+
+    <h3>Review</h3>
+
+    <div class="review-form">
+      <%= form_tag novel_reviews_path(@novel) do %>
+
+          <div class="form-row">
+            <%= label_tag :vote %>
+            <%= number_field_tag :vote, min: 0, max: 10, :required => true %>
+          </div>
+
+          <div class="form-row">
+            <%= label_tag :review %>
+            <%= text_area_tag :review, 'Add review...', :required => true %>
+          </div>
+
+          <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
+      <% end %>
+    </div>
+
+
+
+
+
+    <% if @novel.reviews.blank? %>
+
+        This Comic has no review
+
+    <% else %>
+
+        <div class="reviews">
+          <% @novel.reviews.each do |review| %>
+
+              <div class="review">
+
+                <div class="review-box">
+
+                  <div class="review-text">
+                    <%= review.review %>
+
+                    <span class="review-vote">
+                       <%= review.vote %>
+                    </span>
+
+                  </div>
+                  <div class="review-footer">
+                    <div class="review-info">
+                      <span class="review-author">
+                              <%= review.user.name %>
+                      </span>
+                      <span class="review-date">
+                        <%= review.created_at %>
+                      </span>
+                    </div>
+
+                    <% if current_user?(review.user) or current_user.is_admin? %>
+
+                        <div class="review-actions">
+                          <%= link_to review_path(review), method: :delete, data: {confirm: 'Are You Sure?'} do %>
+                              <span class='glyphicon glyphicon-trash'></span>
+                          <% end %>
+                        </div>
+
+                    <% end %>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+          <% end %>
+        </div>
+
+
+    <% end %>
+
+  </div>
 
 
 </div>
