@@ -1,6 +1,12 @@
 class Chapter < ApplicationRecord
   has_many :contents
   belongs_to :reading, polymorphic: true
+
+  has_one :self_ref, :class_name => self, :foreign_key => :id
+
+  has_one :comic, :through => :self_ref, :source => :reading, :source_type => 'Comic'
+  has_one :novel, :through => :self_ref, :source => :reading, :source_type => 'Novel'
+
   has_many :images, :through => :contents, :source => :content_element, :source_type => 'ImageContent'
   has_many :texts, :through => :contents, :source => :content_element, :source_type => 'TextContent'
 
