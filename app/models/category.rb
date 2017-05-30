@@ -3,13 +3,14 @@ class Category < ApplicationRecord
   belongs_to :parent, :class_name => "Category", required: false
   validates :title, presence: true, allow_blank: false
   has_many :category_readings
+  has_many :comics, :through => :category_readings, :source => :reading, :source_type => 'Comic'
+  has_many :novels, :through => :category_readings, :source => :reading, :source_type => 'Novel'
 
-  def readings
-    category_readings.map(&:reading)
+  def add_comic(comic)
+    comics << comic unless comics.include?(comic)
   end
 
-
-  def add_reading(reading)
-    readings << reading unless readings.include?(reading)
+  def add_novel(novel)
+    novels << novel unless novels.include?(novel)
   end
 end
