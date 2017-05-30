@@ -1,9 +1,9 @@
 class ComicsController < ApplicationController
   def index
     if params.has_key?(:page)
-      @comics = Comic.order('created_at DESC').page(params[:page]).per(20)
+      @comics = Comic.order('id DESC').page(params[:page]).per(20)
     else
-      @comics = Comic.order('created_at DESC').page(1).per(20)
+      @comics = Comic.order('id DESC').page(1).per(20)
     end
   end
 

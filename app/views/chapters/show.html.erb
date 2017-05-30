@@ -28,9 +28,42 @@
 
   <% if @chapter.contents.blank? %>
 
-    Chapter is empty
+      Chapter is empty
 
   <% else %>
+
+      <% if is_comic %>
+
+          <div class="images">
+            <% @chapter.images.each do |image| %>
+
+              <div class="image">
+                <td><%= image_tag image.image.url %></td>
+              </div>
+
+            <% end %>
+          </div>
+
+
+
+      <% else %>
+
+          <div class="texts">
+            <% @chapter.texts.each do |text| %>
+
+                <div class="text">
+
+                  <p> <%= text.txt_content %> </p>
+
+                </div>
+
+            <% end %>
+          </div>
+
+
+
+
+      <% end %>
 
   <% end %>
 

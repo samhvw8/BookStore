@@ -1,0 +1,107 @@
+<div class="container">
+
+  <h1>
+    Subscribe list
+  </h1>
+
+
+
+  <% if @subscribes.blank? %>
+
+      <div class="row">
+
+        <h3>
+          Subscribe list is empty
+        </h3>
+
+      </div>
+
+  <% else %>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Current Reading</th>
+          <th>Newest Chap</th>
+          <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @subscribes.order('id DESC').each do |subscribe| %>
+            <% is_novel = subscribe.novel.nil? ? false : true %>
+
+            <tr>
+              <td scope="row">
+
+                <% if is_novel %>
+
+
+                    <%= subscribe.novel.title %>
+
+                <% else %>
+
+                    <%= subscribe.comic.title %>
+
+                <% end %>
+              </td>
+
+              <td scope="row">
+
+
+                <div class="reading-title">
+                  <%= subscribe.reading_type %>
+                </div>
+
+
+              </td>
+              <td scope="row">
+
+
+                <div class="reading-title">
+                  <%= link_to chapter_path(subscribe.current_chap) do %>
+                      <%= subscribe.current_chap.no %>
+                  <% end %>
+                </div>
+
+
+              </td>
+
+              <td scope="row">
+
+
+                <div class="reading-title">
+                  <%= link_to chapter_path(subscribe.newest_chap) do %>
+                      <%= subscribe.newest_chap.no %>
+                  <% end %>
+                </div>
+
+
+              </td>
+
+              <td scope="row">
+
+
+                <div class="reading-title">
+                  <%= link_to subscribe_path(subscribe), method: :delete do %>
+                    <span class='glyphicon glyphicon-trash'></span>
+                  <% end %>
+                </div>
+
+
+              </td>
+
+            </tr>
+
+        <% end %>
+
+        </tbody>
+      </table>
+
+
+  <% end %>
+
+
+</div>

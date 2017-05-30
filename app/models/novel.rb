@@ -1,6 +1,6 @@
 class Novel < ApplicationRecord
-  has_many :reviews
-  has_many :subscribes
+  has_many :reviews, as: :reading
+  has_many :subscribes, as: :reading
   has_many :author_readings, as: :reading
   has_many :category_readings, as: :reading
   has_many :chapters, as: :reading

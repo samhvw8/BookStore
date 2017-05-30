@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @categories = Category.all
-    @novels = Novel.order('created_at DESC').page(1).per(10)
-    @comics = Comic.order('created_at DESC').page(1).per(10)
+    @novels = Novel.order('id DESC').page(1).per(15)
+    @comics = Comic.order('id DESC').page(1).per(15)
   end
 end

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show, :index]
 
+  resources :subscribes, only: [:index, :destroy]
+
   resources :authors, only: [:show, :new, :create]
 
   namespace :admin do

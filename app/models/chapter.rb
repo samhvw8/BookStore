@@ -12,6 +12,17 @@ class Chapter < ApplicationRecord
 
   validates :no, presence: true, length: {maximum: 10}, allow_blank: false
   validates :title, presence: true, length: {maximum: 50},
-            allow_blank: false, uniqueness: true
+            allow_blank: false
+
+  after_create_commit :subscribe_update
+
+
+  def subscribe_update
+    if novel.nil?
+      comic.subscribes.update_all(available: true, newest_chap: self) unless comic.subscribes.blank?
+    else
+      novel.subscribes.update_all(available: true, newest_chap: self) unless novel.subscribes.blank?
+    end
+  end
 
 end
