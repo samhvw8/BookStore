@@ -24,6 +24,24 @@
 
   </div>
 
+  <% if logged_in? %>
+
+      <div class="row">
+
+
+          Subscribe
+
+
+        <%= link_to novel_subscribes_url(@novel), method: :post do %>
+
+            <span class="glyphicon glyphicon-plus"></span>
+
+        <% end %>
+
+
+      </div>
+
+  <% end %>
 
   <div class="row">
 

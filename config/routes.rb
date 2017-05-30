@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'authors/new'
+  get 'get_sub', to: 'subscribe_notification#index', as: 'get_notification'
+
+  resources :novels, only: [:index, :show] do
+    resources :subscribes, only: [:create]
   end
 
-  namespace :admin do
-    get 'authors/create'
+  resources :comics, only: [:index, :show] do
+    resources :subscribes, only: [:create]
   end
 
-  resources :novels, only: [:index, :show ]
+  resources :subscribes, only: [:index, :destroy]
 
-  resources :comics, only: [:index, :show ]
+  resources :chapters, only: [:show]
+
+  resources :categories, only: [:show, :index]
+
+  resources :authors, only: [:show]
 
   get 'profile', to: 'sessions#show', as: 'profile'
   get 'signup', to: 'users#new', as: 'get_signup'
@@ -22,21 +28,13 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index, :show]
 
-
   get '/', to: 'home#index', as: 'root'
 
 
-  resources :chapters, only: [:show]
-
-  resources :categories
-
-  resources :subscribes, only: [:index, :destroy]
-
-  resources :authors, only: [:show, :new, :create]
 
   namespace :admin do
     resources :novels
-    resource :authors
+    resources :authors
   end
 
 end

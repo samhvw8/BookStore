@@ -1,12 +1,29 @@
 class SubscribesController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: :destroy
 
   def index
     @subscribes = current_user.subscribes
   end
 
+  def create
+    reading = nil
+    if params.has_key?(:novel_id)
+      reading = Novel.find params[:novel_id]
+    else
+      if params.has_key?(:comic_id)
+        reading = Comic.find params[:comic_id]
+      else
+        redirect_to :back
+      end
+    end
+
+    current_user.subscribes.create(reading: reading) unless reading.nil?
+    flash[:success] = 'Subscribe added'
+    redirect_to :back
+  end
+
   def destroy
+
     sub = Subscribe.find(params[:id])
 
     unless sub.nil?
@@ -26,9 +43,5 @@ class SubscribesController < ApplicationController
     end
   end
 
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
-  end
 
 end
