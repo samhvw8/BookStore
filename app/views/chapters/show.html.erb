@@ -1,0 +1,37 @@
+<div class="container">
+
+  <% is_comic = @chapter.novel.nil? ? true : false %>
+
+  <div class="row">
+    <h1>
+
+      <% if is_comic %>
+          <%= link_to comic_path(@chapter.comic) do %>
+
+              <%= @chapter.comic.title %>
+
+          <% end %>
+
+      <% else %>
+
+          <%= link_to novel_path(@chapter.novel) do %>
+
+              <%= @chapter.comic.title %>
+
+          <% end %>
+
+      <% end %>
+      > <%= @chapter.no %>. <%= @chapter.title %>
+
+    </h1>
+  </div>
+
+  <% if @chapter.contents.blank? %>
+
+    Chapter is empty
+
+  <% else %>
+
+  <% end %>
+
+</div>

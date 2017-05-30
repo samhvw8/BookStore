@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <h1><%= @comic.title %></h1>
+  </div>
+  <div class="row">
+
+
+    <% if @comic.authors.blank? %>
+
+    <% else %>
+        <p>Author: </p>
+
+        <% @comic.authors.each do |author| %>
+
+            <%= link_to author_path(author) do %>
+
+                <p> <%= author.name %> </p>
+
+            <% end %>
+
+        <% end %>
+
+    <% end %>
+
+  </div>
+
+
+  <div class="row">
+
+    <h3>
+      Description
+    </h3>
+
+    <p>
+      <%= @comic.description %>
+    </p>
+
+  </div>
+
+  <% if @comic.chapters.blank? %>
+
+      There is no chapters
+
+
+  <% else %>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>No.</th>
+          <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @comic.chapters.order('created_at DESC').each do |chapter| %>
+
+
+            <tr class="clickable-row" data-link=<%= chapter_path(chapter) %>>
+              <td scope="row">
+
+
+                <%= chapter.no %>
+
+
+              </td>
+
+              <td scope="row">
+
+
+                <div class="reading-title">
+                  <%= chapter.title %>
+                </div>
+
+
+              </td>
+
+
+            </tr>
+
+
+        <% end %>
+
+
+        </tbody>
+      </table>
+
+
+  <% end %>
+
+
+</div>
