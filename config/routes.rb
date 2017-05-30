@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :novels, only: [:index, :show ]
 
   resources :comics, only: [:index, :show ]
@@ -24,5 +23,9 @@ Rails.application.routes.draw do
   resources :categories, only: [:show, :index]
 
   resources :authors, only: [:show, :new, :create]
+
+  namespace :admin do
+    resources :novels
+  end
 
 end
