@@ -179,3 +179,7 @@ header .reading-type {
   border-color: #4277b4;
   box-shadow: 0 0 5px #4277b4 inset;
 }
+
+.dashboard-table tr {
+  cursor: pointer;
+}

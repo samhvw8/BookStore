@@ -37,9 +37,17 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    resources :novels
     resources :authors
     resources :categories
+
+    resources :novels, only: [:new, :create, :show, :index] do
+      resources :chapters, only: [:new, :create, :index]
+    end
+
+    resources :comics, only: [:new, :create, :show] do
+      resources :chapters, only: [:new, :create, :index]
+    end
+
   end
 
 end

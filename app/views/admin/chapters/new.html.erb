@@ -1,0 +1,25 @@
+<div class="container">
+  <% provide(:title, 'New chapter') %>
+  <% provide(:button_text, 'Submit') %>
+  <h2>Add new charter for <%= @novel.title %></h2>
+  <%= form_for @chapter, url: admin_novel_chapters_path(@novel), :multipart => true  do |f|%>
+      <%= render partial: 'shared/err', locals: {err: @chapter} %>
+
+      <div class="form-group">
+        <%= f.label :no %>
+        <%= f.text_field :no, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= text_area_tag 'content[txt_content]', nil, cols: 40, rows: 20, class: 'form-control' %>
+      </div>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <% end %>
+</div>
