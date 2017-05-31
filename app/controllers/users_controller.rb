@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # Not the final implementation!
     if @user.save
-      flash[:success] = 'User have been Created !'
+      flash[:success] = 'Welcome to Readings !'
       log_in(@user)
       redirect_to root_path
     else

@@ -48,10 +48,11 @@
         <tr>
           <th>No.</th>
           <th>Title</th>
+          <th>View</th>
         </tr>
         </thead>
         <tbody>
-        <% @comic.chapters.order('created_at DESC').each do |chapter| %>
+        <% @comic.chapters.order('id DESC').each do |chapter| %>
 
 
             <tr class="clickable-row" data-link=<%= chapter_path(chapter) %>>
@@ -68,6 +69,16 @@
 
                 <div class="reading-title">
                   <%= chapter.title %>
+                </div>
+
+
+              </td>
+
+              <td scope="row">
+
+
+                <div class="reading-title">
+                  <%= chapter.viewed %>
                 </div>
 
 

@@ -1,7 +1,5 @@
 class User < ApplicationRecord
   has_many :reviews
-  has_many :orders
-  has_many :comments
   has_many :subscribes
 
   before_save {self.email = email.downcase}
@@ -13,19 +11,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def get_order
+  def subscribe_reading(reading)
+    subscribe = subscribes.create(reading: reading)
 
-    if orders.last === nil
-      # empty order
-      orders.create(user: self)
-    else
-      if orders.last.is_checkout
-        orders.create(user: self)
-      else
-        orders.last
-      end
-    end
-
+    subscribe.id.nil? ? nil : subscribe
   end
 
 end
