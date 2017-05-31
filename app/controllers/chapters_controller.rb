@@ -6,6 +6,16 @@ class ChaptersController < ApplicationController
 
     @chapter.save
 
+    if @chapter.novel.nil?
+      @previous_chap = @chapter.comic.chapters.where('id < ?', @chapter.id).first
+      @next_chap = @chapter.comic.chapters.where('id > ?', @chapter.id).first
+      @chapters =  @chapter.comic.chapters
+    else
+      @previous_chap = @chapter.novel.chapters.where('id < ?', @chapter.id).first
+      @next_chap = @chapter.novel.chapters.where('id > ?', @chapter.id).first
+      @chapters =  @chapter.novel.chapters
+    end
+
 
     if logged_in?
       sub = nil

@@ -22,7 +22,7 @@
 
       <%= form_tag search_path, :class => 'form-search', :method => 'get' do %>
 
-          <%= search_field_tag :keyword, params[:keyword] %>
+          <%= search_field_tag :keyword, params[:keyword], placeholder: 'title, name..' %>
 
       <% end %>
 
