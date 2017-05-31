@@ -70,9 +70,12 @@ $(document).ready(function () {
 
 $(document).on('click', '.show-list', function () {
     $('.readings').addClass('list-mode');
+    $('.show-list-item').removeClass('hidden')
+
 });
 
 $(document).on('click', '.hide-list', function () {
     $('.readings').removeClass('list-mode');
+    $('.show-list-item').addClass('hidden')
 });
 

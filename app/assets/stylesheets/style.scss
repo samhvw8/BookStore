@@ -135,6 +135,7 @@ header a.hide-list {
   width: $box-width;
   height: $box-height;
   margin: 0 10px 10px 0;
+  padding: 5px;
   background-color: #ffffff;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -180,6 +181,9 @@ header .reading-type {
   box-shadow: 0 0 5px #4277b4 inset;
 }
 
+.reading-info.list-mode {
+  text-align: right;
+}
 .dashboard-table tr {
   cursor: pointer;
 }
