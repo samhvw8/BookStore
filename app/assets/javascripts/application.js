@@ -41,6 +41,7 @@ $(document).ready(function () {
             }
         }
     }).on('ajax:error', function (e, xhr, status, error) {
+
         $('#add-author-modal .error-container').html("Network error!");
     });
 
@@ -65,3 +66,14 @@ $(document).ready(function () {
         $('#add-category-modal .error-container').html("Network error!");
     });
 });
+
+
+
+$(document).on('click', '.show-list', function () {
+    $('.readings').addClass('list-mode');
+});
+
+$(document).on('click', '.hide-list', function () {
+    $('.readings').removeClass('list-mode');
+});
+
