@@ -1,16 +1,7 @@
 class CategoriesController < ApplicationController
-  def new
-    @category = Category.new
+
+  def show
+    @category = Category.find params[:id]
   end
 
-  def create
-    category_params = params.require(:category).permit(:title)
-    @category = Category.new(category_params)
-
-    if @category.save
-      redirect_to reading_new_path
-    else
-      render 'new'
-    end
-  end
 end

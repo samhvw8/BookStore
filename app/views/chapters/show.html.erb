@@ -1,36 +1,19 @@
-<div class="container">
+<div class="container read">
 
   <% is_comic = @chapter.novel.nil? ? true : false %>
 
-  <div class="row">
-    <h1>
 
-      <% if is_comic %>
-          <%= link_to comic_path(@chapter.comic) do %>
+  <ol class="breadcrumb">
+    <% if is_comic %>
+        <li><%= link_to @chapter.comic.title, comic_path(@chapter.comic) %></li>
+    <% else %>
+        <li><%= link_to @chapter.novel.title, novel_path(@chapter.novel) %></li>
+    <% end %>
+    <li class="active"><%= @chapter.no %>. <%= @chapter.title %></li>
+  </ol>
 
-              <%= @chapter.comic.title %>
 
-          <% end %>
-
-      <% else %>
-
-          <%= link_to novel_path(@chapter.novel) do %>
-
-              <%= @chapter.comic.title %>
-
-          <% end %>
-
-      <% end %>
-      > <%= @chapter.no %>. <%= @chapter.title %>
-
-    </h1>
-  </div>
-
-  <% if @chapter.contents.blank? %>
-
-      Chapter is empty
-
-  <% else %>
+  <% unless @chapter.contents.blank? %>
 
       <% if is_comic %>
 
@@ -38,7 +21,14 @@
             <% @chapter.images.each do |image| %>
 
                 <div class="image">
-                  <td><%= image_tag image.image.url %></td>
+
+                  <% if image.image.exists? %>
+                      <td><%= image_tag image.image.url %></td>
+                  <% else %>
+                      <td><img src="/images/not-found.jpg" alt="Novel cover"></td>
+                  <% end %>
+
+
                 </div>
 
             <% end %>
@@ -65,19 +55,24 @@
 
   <% end %>
 
-  <div class="row center-block">
-    <div class="text-center">
+
+
+  <nav aria-label="...">
+    <ul class="pager">
       <% unless @previous_chap.nil? %>
-          <%= link_to 'Previous Chap', chapter_path(@previous_chap) %>
-      <% end %>
+          <li>
+            <%= link_to 'Previous Chap', chapter_path(@previous_chap) %>
+          </li>
 
+      <% end %>
       <% unless @next_chap.nil? %>
+          <li>
+            <%= link_to 'Next Chap', chapter_path(@next_chap) %>
+          </li>
 
-          <%= link_to 'Next Chap', chapter_path(@next_chap) %>
       <% end %>
-    </div>
-  </div>
-
+    </ul>
+  </nav>
 
 
 </div>

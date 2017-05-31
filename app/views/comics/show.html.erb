@@ -1,59 +1,85 @@
-<div class="container">
+
+<div class="container read">
+
   <div class="row">
-    <h1><%= @comic.title %></h1>
-  </div>
-  <div class="row">
+    <div class="col-xs-2">
+      <div class="reading-cover">
+        <% if @comic.cover.exists? %>
+            <%= image_tag @comic.cover.url %>
+        <% else %>
+            <img src="/images/not-found.jpg" alt="Comic cover">
+        <% end %>
+        <% if logged_in? %>
+            <div class="subscribe-box text-center">
+              Subscribe
 
 
-    <% if @comic.authors.blank? %>
+              <%= link_to comic_subscribes_url(@comic), method: :post do %>
 
-    <% else %>
-        <p>Author: </p>
+                  <span class="glyphicon glyphicon-plus"></span>
 
-        <% @comic.authors.each do |author| %>
-
-            <%= link_to author_path(author) do %>
-
-                <p> <%= author.name %> </p>
-
-            <% end %>
+              <% end %>
+            </div>
 
         <% end %>
+      </div>
+    </div>
 
-    <% end %>
-
-  </div>
-
-  <% if logged_in? %>
-
-      <div class="row">
-
-
-        Subscribe
+    <div class="col-xs-10">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @comic.title %></h3>
 
 
-        <%= link_to comic_subscribes_url(@comic), method: :post do %>
+        </div>
+        <div class="panel-body">
 
-            <span class="glyphicon glyphicon-plus"></span>
+          <% if @comic.authors.blank? %>
 
-        <% end %>
+          <% else %>
+              <p>Author:
+
+                <% @comic.authors.each do |author| %>
+
+                    <%= link_to author.name, author_path(author) %>
+
+                <% end %>
+
+              </p>
+
+          <% end %>
+
+          <% if @comic.categories.blank? %>
+
+          <% else %>
+              <p>Categories:
+
+                <% @comic.categories.each do |category| %>
+
+                    <%= link_to category.title, category_path(category) %>
+
+                <% end %>
+
+              </p>
+
+          <% end %>
+        </div>
+
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Description
+          </h3>
+        </div>
+
+        <div class="panel-body">
+          <%= @comic.description %>
+        </div>
 
 
       </div>
-
-  <% end %>
-
-  <div class="row">
-
-    <h3>
-      Description
-    </h3>
-
-    <p>
-      <%= @comic.description %>
-    </p>
-
+    </div>
   </div>
+
 
   <% if @comic.chapters.blank? %>
 
@@ -131,10 +157,10 @@
 
               <div class="form-row">
                 <%= label_tag :review %>
-                <%= text_area_tag :review, placeholder: 'Add review...', class: 'input' %>
+                <%= text_area_tag :review, nil, placeholder: 'Enter review', class: 'input' %>
               </div>
               <div class="form-row">
-                <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
+                <%= submit_tag 'Add Review', class: 'btn btn-large btn-primary' %>
               </div>
           <% end %>
         </div>
@@ -143,7 +169,6 @@
 
     <% if @comic.reviews.blank? %>
 
-        This Comic has no review
 
     <% else %>
 

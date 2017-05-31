@@ -1,59 +1,85 @@
-<div class="container">
+
+<div class="container read">
+
   <div class="row">
-    <h1><%= @novel.title %></h1>
-  </div>
-  <div class="row">
+    <div class="col-xs-2">
+      <div class="reading-cover">
+        <% if @novel.cover.exists? %>
+            <%= image_tag @novel.cover.url %>
+        <% else %>
+            <img src="/images/not-found.jpg" alt="Novel cover">
+        <% end %>
+        <% if logged_in? %>
+            <div class="subscribe-box text-center">
+              Subscribe
 
 
-    <% if @novel.authors.blank? %>
+              <%= link_to novel_subscribes_url(@novel), method: :post do %>
 
-    <% else %>
-        <p>Author: </p>
+                  <span class="glyphicon glyphicon-plus"></span>
 
-        <% @novel.authors.each do |author| %>
-
-            <%= link_to author_path(author) do %>
-
-                <p> <%= author.name %> </p>
-
-            <% end %>
+              <% end %>
+            </div>
 
         <% end %>
+      </div>
+    </div>
 
-    <% end %>
-
-  </div>
-
-  <% if logged_in? %>
-
-      <div class="row">
-
-
-        Subscribe
+    <div class="col-xs-10">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @novel.title %></h3>
 
 
-        <%= link_to novel_subscribes_url(@novel), method: :post do %>
+        </div>
+        <div class="panel-body">
 
-            <span class="glyphicon glyphicon-plus"></span>
+          <% if @novel.authors.blank? %>
 
-        <% end %>
+          <% else %>
+              <p>Author:
+
+                <% @novel.authors.each do |author| %>
+
+                    <%= link_to author.name, author_path(author) %>
+
+                <% end %>
+
+              </p>
+
+          <% end %>
+
+          <% if @novel.categories.blank? %>
+
+          <% else %>
+              <p>Categories:
+
+                <% @novel.categories.each do |category| %>
+
+                    <%= link_to category.title, category_path(category) %>
+
+                <% end %>
+
+              </p>
+
+          <% end %>
+        </div>
+
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Description
+          </h3>
+        </div>
+
+        <div class="panel-body">
+          <%= @novel.description %>
+        </div>
 
 
       </div>
-
-  <% end %>
-
-  <div class="row">
-
-    <h3>
-      Description
-    </h3>
-
-    <p>
-      <%= @novel.description %>
-    </p>
-
+    </div>
   </div>
+
 
   <% if @novel.chapters.blank? %>
 
@@ -91,6 +117,7 @@
 
 
               </td>
+
               <td scope="row">
 
 
@@ -100,6 +127,7 @@
 
 
               </td>
+
 
             </tr>
 
@@ -113,33 +141,34 @@
 
   <% end %>
 
-
   <div class="row">
 
     <h3>Review</h3>
 
     <% if logged_in? %>
+
         <div class="review-form">
-          <%= form_tag novel_reviews_path(@novel) do %>
+          <%= form_tag novel_reviews_path(@novel), {:class => 'form'} do %>
 
               <div class="form-row">
                 <%= label_tag :vote %>
-                <%= number_field_tag :vote, min: 0, max: 10, :required => true %>
+                <%= number_field_tag :vote, min: 0, max: 10 %>
               </div>
 
               <div class="form-row">
                 <%= label_tag :review %>
-                <%= text_area_tag :review, placeholder: 'Add review...', :required => true %>
+                <%= text_area_tag :review, nil, placeholder: 'Enter review', class: 'input' %>
               </div>
-
-              <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
+              <div class="form-row">
+                <%= submit_tag 'Add Review', class: 'btn btn-large btn-primary' %>
+              </div>
           <% end %>
         </div>
     <% end %>
 
+
     <% if @novel.reviews.blank? %>
 
-        This Comic has no review
 
     <% else %>
 
@@ -191,6 +220,5 @@
     <% end %>
 
   </div>
-
 
 </div>

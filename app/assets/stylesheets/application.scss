@@ -17,6 +17,7 @@
 @import "style";
 @import "reviews";
 @import "search";
+@import "categories";
 
 .clickable-row:hover {
   /*background: #b45c17;*/
@@ -36,7 +37,13 @@
   color: #f3f6ff;
 }
 
-.have-notification > * {
-
+.reading-cover > img {
+  height: 150px;
+  width: auto;
 }
 
+.read {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 20px;
+}

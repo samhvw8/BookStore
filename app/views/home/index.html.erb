@@ -1,104 +1,141 @@
-<div class="container">
+<div class="container read">
 
-  <div class="readings">
+  <div class="row">
+    <div class="col-xs-10 col-md-10">
+      <div class="readings">
 
-    <header>
-      &nbsp;
-      <a class="reading-type">
-        Comic
-      </a>
-      <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
-      <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
-    </header>
+        <header>
+          &nbsp;
+          <a class="reading-type">
+            Comic
+          </a>
+          <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+          <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+        </header>
 
-    <% if @comics.blank? %>
-        <h3>There is no Comics</h3>
-    <% else %>
+        <% if @comics.blank? %>
+            <h3>There is no Comics</h3>
+        <% else %>
 
-        <div class="readings-container">
-          <% @comics.each do |comic| %>
-              <div class="reading-box">
+            <div class="readings-container">
+              <% @comics.each do |comic| %>
+                  <div class="reading-box">
 
-                <%= link_to comic_path(comic) do %>
-                    <img src="/images/bookcover/cover1.jpg" alt="Comic cover">
-                <% end %>
-
-
-                <div class="reading-info">
-                  <% unless comic.chapters.blank? %>
-                      <div class="reading-chapter">
-                        <%= link_to chapter_path(comic.chapters.last) do %>
-                            Chap <%= comic.chapters.last.no %>
-                        <% end %>
-                      </div>
-                  <% end %>
-
-
-                  <div class="reading-title">
                     <%= link_to comic_path(comic) do %>
-                        <%= comic.title %>
+                        <% if comic.cover.exists? %>
+                            <%= image_tag comic.cover.url %>
+                        <% else %>
+                            <img src="/images/not-found.jpg" alt="Comic cover">
+                        <% end %>
                     <% end %>
-                  </div>
-                </div>
 
 
-              </div>
-          <% end %>
-    <% end %>
+                    <div class="reading-info">
+                      <% unless comic.chapters.blank? %>
+                          <div class="reading-chapter">
+                            <%= link_to chapter_path(comic.chapters.last) do %>
+                                Chap <%= comic.chapters.last.no %>
+                            <% end %>
+                          </div>
+                      <% end %>
 
 
-    </div>
-
-
-    <%= link_to 'Load all comic', comics_path %>
-
-  </div>
-  <div class="readings">
-    <header>
-      &nbsp;
-      <div class="reading-type">
-        Novel
-      </div>
-    </header>
-    <% if @novels.blank? %>
-        <h3>There is no Novels</h3>
-    <% else %>
-
-        <div class="readings-container">
-          <% @novels.each do |novel| %>
-              <div class="reading-box">
-
-                <%= link_to novel_path(novel) do %>
-                    <img src="/images/bookcover/cover1.jpg" alt="Novel cover">
-                <% end %>
-
-
-                <div class="reading-info">
-                  <% unless novel.chapters.blank? %>
-                      <div class="reading-chapter">
-                        <%= link_to chapter_path(novel.chapters.last) do %>
-                            Chap <%= novel.chapters.last.no %>
+                      <div class="reading-title">
+                        <%= link_to comic_path(comic) do %>
+                            <%= comic.title %>
                         <% end %>
                       </div>
-                  <% end %>
+                    </div>
 
 
-                  <div class="reading-title">
-                    <%= link_to novel_path(novel) do %>
-                        <%= novel.title %>
-                    <% end %>
                   </div>
-                </div>
+              <% end %>
+        <% end %>
 
 
-              </div>
-          <% end %>
-    <% end %>
+        </div>
 
+
+        <%= link_to 'Load all comic', comics_path %>
+
+      </div>
+      <div class="readings">
+        <header>
+          &nbsp;
+          <div class="reading-type">
+            Novel
+          </div>
+        </header>
+        <% if @novels.blank? %>
+            <h3>There is no Novels</h3>
+        <% else %>
+
+            <div class="readings-container">
+              <% @novels.each do |novel| %>
+                  <div class="reading-box">
+
+                    <%= link_to novel_path(novel) do %>
+                        <% if novel.cover.exists? %>
+                            <%= image_tag novel.cover.url %>
+                        <% else %>
+                            <img src="/images/not-found.jpg" alt="Novel cover">
+                        <% end %>
+                    <% end %>
+
+
+                    <div class="reading-info">
+                      <% unless novel.chapters.blank? %>
+                          <div class="reading-chapter">
+                            <%= link_to chapter_path(novel.chapters.last) do %>
+                                Chap <%= novel.chapters.last.no %>
+                            <% end %>
+                          </div>
+                      <% end %>
+
+
+                      <div class="reading-title">
+                        <%= link_to novel_path(novel) do %>
+                            <%= novel.title %>
+                        <% end %>
+                      </div>
+                    </div>
+
+
+                  </div>
+              <% end %>
+        <% end %>
+
+        </div>
+
+
+        <%= link_to 'Load all novel', novels_path %>
+
+
+      </div>
     </div>
 
+    <div class="col-xs-2 col-md-2">
+      <div class="categories text-center">
+        <div class="categories-header">
+          Category
+        </div>
 
-    <%= link_to 'Load all novel', novels_path %>
+        <% @categories.each do |category| %>
+
+            <div class="category">
+
+              <%= link_to category.title, category_path(category)%>
+
+            </div>
+
+
+        <% end %>
+
+
+
+
+      </div>
+    </div>
 
 
   </div>

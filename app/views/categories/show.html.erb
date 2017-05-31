@@ -2,19 +2,11 @@
 
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= @author.name %></h3>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Bio</h3>
-    </div>
-    <div class="panel-body">
-      <%= @author.bio %>
+      <h3 class="panel-title"><%= @category.title %></h3>
     </div>
   </div>
 
-  <% unless @author.comics.blank? %>
+  <% unless @category.comics.blank? %>
 
       <div class="readings">
         <header>
@@ -25,12 +17,12 @@
           <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
           <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
         </header>
-        <% if @author.comics.blank? %>
+        <% if @category.comics.blank? %>
 
         <% else %>
 
             <div class="readings-container">
-              <% @author.comics.each do |comic| %>
+              <% @category.comics.each do |comic| %>
                   <div class="reading-box">
 
                     <%= link_to comic_path(comic) do %>
@@ -69,7 +61,7 @@
   <% end %>
 
 
-  <% unless @author.novels.blank? %>
+  <% unless @category.novels.blank? %>
 
       <div class="readings">
         <header>
@@ -80,12 +72,12 @@
           <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
           <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
         </header>
-        <% if @author.novels.blank? %>
+        <% if @category.novels.blank? %>
 
         <% else %>
 
             <div class="readings-container">
-              <% @author.novels.each do |novel| %>
+              <% @category.novels.each do |novel| %>
                   <div class="reading-box">
 
                     <%= link_to novel_path(novel) do %>
