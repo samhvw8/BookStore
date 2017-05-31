@@ -4,11 +4,15 @@ Rails.application.routes.draw do
 
   resources :novels, only: [:index, :show] do
     resources :subscribes, only: [:create]
+    resources :reviews, only: [:create]
   end
 
   resources :comics, only: [:index, :show] do
     resources :subscribes, only: [:create]
+    resources :reviews, only: [:create]
   end
+
+  resources :reviews, only: [:destroy]
 
   resources :subscribes, only: [:index, :destroy]
 
