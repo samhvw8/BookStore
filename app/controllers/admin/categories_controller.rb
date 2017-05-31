@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::AdminController
   def create
     category_params = params.require('category').permit(:title)
     @category = Category.new(category_params)

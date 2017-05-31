@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def logged_in_user
     unless logged_in?
       flash[:danger] = 'Please log in.'
-      redirect_to login_url
+      redirect_to get_login_url
     end
   end
 
