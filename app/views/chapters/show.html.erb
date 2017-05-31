@@ -37,13 +37,12 @@
           <div class="images">
             <% @chapter.images.each do |image| %>
 
-              <div class="image">
-                <td><%= image_tag image.image.url %></td>
-              </div>
+                <div class="image">
+                  <td><%= image_tag image.image.url %></td>
+                </div>
 
             <% end %>
           </div>
-
 
 
       <% else %>
@@ -61,10 +60,24 @@
           </div>
 
 
-
-
       <% end %>
 
+
   <% end %>
+
+  <div class="row center-block">
+    <div class="text-center">
+      <% unless @previous_chap.nil? %>
+          <%= link_to 'Previous Chap', chapter_path(@previous_chap) %>
+      <% end %>
+
+      <% unless @next_chap.nil? %>
+
+          <%= link_to 'Next Chap', chapter_path(@next_chap) %>
+      <% end %>
+    </div>
+  </div>
+
+
 
 </div>
