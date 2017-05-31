@@ -1,6 +1,8 @@
 class Admin::NovelsController < ApplicationController
   def new
     @novel = Novel.new
+    @category = Category.new
+    @author = Author.new
   end
 
   def create
