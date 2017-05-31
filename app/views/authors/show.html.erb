@@ -7,55 +7,55 @@
     </div>
 
 
+
+
     <% unless @author.comics.blank? %>
-        <header>
-          &nbsp;
-          <a class="reading-type">
-            Comic
-          </a>
-          <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
-          <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
-        </header>
 
-        <% if @author.comics.blank? %>
-            <h3>There is no Comics</h3>
-        <% else %>
+        <div class="readings">
+          <header>
+            &nbsp;
+            <a class="reading-type">
+              Novel
+            </a>
+            <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+            <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+          </header>
+          <% if @author.comics.blank? %>
+              <h3>There is no Novels</h3>
+          <% else %>
 
-            <div class="readings-container">
-              <% @author.comics.each do |comic| %>
-                  <div class="reading-box">
+              <div class="readings-container">
+                <% @author.comics.each do |comic| %>
+                    <div class="reading-box">
 
-                    <%= link_to comic_path(comic) do %>
-                        <img src="/images/bookcover/cover1.jpg" alt="Comic cover">
-                    <% end %>
-
-
-                    <div class="reading-info">
-                      <% unless comic.chapters.blank? %>
-                          <div class="reading-chapter">
-                            <%= link_to chapter_path(comic.chapters.last) do %>
-                                Chap <%= comic.chapters.last.no %>
-                            <% end %>
-                          </div>
+                      <%= link_to comic_path(comic) do %>
+                          <img src="/images/bookcover/cover1.jpg" alt="Novel cover">
                       <% end %>
 
 
-                      <div class="reading-title">
-                        <%= link_to comic_path(comic) do %>
-                            <%= comic.title %>
+                      <div class="reading-info">
+                        <% unless comic.chapters.blank? %>
+                            <div class="reading-chapter">
+                              <%= link_to chapter_path(comic.chapters.last) do %>
+                                  Chap <%= comic.chapters.last.no %>
+                              <% end %>
+                            </div>
                         <% end %>
+
+
+                        <div class="reading-title">
+                          <%= link_to comic_path(comic) do %>
+                              <%= comic.title %>
+                          <% end %>
+                        </div>
                       </div>
+
+
                     </div>
+                <% end %>
+          <% end %>
 
-
-                  </div>
-              <% end %>
-        <% end %>
-
-
-        </div>
-
-
+          </div>
         </div>
     <% end %>
 
@@ -107,8 +107,7 @@
           <% end %>
 
           </div>
-
+        </div>
     <% end %>
-
-    </div>
-    </div>
+  </div>
+</div>

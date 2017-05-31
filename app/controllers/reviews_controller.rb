@@ -3,6 +3,12 @@ class ReviewsController < ApplicationController
 
   def create
 
+    unless logged_in?
+      flash[:danger] = 'Need Login !'
+      redirect_to :back
+      return
+    end
+
     reading = nil
     if params.has_key?(:novel_id)
       reading = Novel.find params[:novel_id]

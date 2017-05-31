@@ -7,6 +7,8 @@ class Comic < ApplicationRecord
   has_many :authors, :through => :author_readings
   has_many :categories, :through => :category_readings
 
+  scope :search, -> (keyword) { where("title LIKE ?" , "%#{keyword}%") }
+
   validates :title, presence: true, allow_blank: false
 
   def add_author(author)
@@ -16,4 +18,5 @@ class Comic < ApplicationRecord
   def add_category(category)
     categories << category unless categories.include?(category)
   end
+
 end

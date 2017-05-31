@@ -118,23 +118,24 @@
 
     <h3>Review</h3>
 
-    <div class="review-form">
-      <%= form_tag novel_reviews_path(@novel) do %>
+    <% if logged_in? %>
+        <div class="review-form">
+          <%= form_tag novel_reviews_path(@novel) do %>
 
-          <div class="form-row">
-            <%= label_tag :vote %>
-            <%= number_field_tag :vote, min: 0, max: 10, :required => true %>
-          </div>
+              <div class="form-row">
+                <%= label_tag :vote %>
+                <%= number_field_tag :vote, min: 0, max: 10, :required => true %>
+              </div>
 
-          <div class="form-row">
-            <%= label_tag :review %>
-            <%= text_area_tag :review, 'Add review...', :required => true %>
-          </div>
+              <div class="form-row">
+                <%= label_tag :review %>
+                <%= text_area_tag :review, 'Add review...', :required => true %>
+              </div>
 
-          <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
-      <% end %>
-    </div>
-
+              <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
+          <% end %>
+        </div>
+    <% end %>
 
     <% if @novel.reviews.blank? %>
 

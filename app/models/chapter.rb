@@ -16,6 +16,7 @@ class Chapter < ApplicationRecord
 
   after_create_commit :subscribe_update
 
+  scope :search, -> (keyword) { where("title LIKE ?" , "%#{keyword}%") }
 
   def subscribe_update
     if novel.nil?
@@ -24,5 +25,6 @@ class Chapter < ApplicationRecord
       novel.subscribes.update_all(available: true, newest_chap: self) unless novel.subscribes.blank?
     end
   end
+
 
 end

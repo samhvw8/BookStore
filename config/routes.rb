@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'home#index', as: 'root'
 
+  get 'search', to: 'search#index', as: 'search'
 
 
   namespace :admin do
