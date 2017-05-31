@@ -1,47 +1,181 @@
 /*********** css for header *****************/
 .header-container {
-    width: 1000px;
-    margin: 0 auto;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .header-container .logo {
-    line-height: 50px;
-    font-size: 25px;
+  line-height: 50px;
+  font-size: 25px;
 }
 
 .search-bar {
-    margin-top: 6px;
+  margin-top: 6px;
 }
 
 .search-bar select[name="category"] {
-    background-color: white;
-    height: 36px;
-    border: 1px solid #ccd0d2;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-    font-size: 14px;
-    width: auto;
-    margin-bottom: 0px;
+  background-color: white;
+  height: 36px;
+  border: 1px solid #ccd0d2;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  font-size: 14px;
+  width: auto;
+  margin-bottom: 0px;
 }
 
 .filter-holder {
-    position: relative;
-    white-space: nowrap;
-    font-size: 15px;
+  position: relative;
+  white-space: nowrap;
+  font-size: 15px;
 }
 
 .input-search {
-    padding: 7px 12px;
+  padding: 7px 12px;
 }
 
 .search-button {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .no-left-padding {
-    padding-left: 0px;
+  padding-left: 0px;
 }
 
 .my-hidden {
-    display: none;
+  display: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #F2F2F2;
+  font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  //text-align: center;
+  color: #404040;
+  position: relative;
+}
+
+$primary-color: #333;
+$box-height: 130px;
+$box-width: 200px;
+$reading-img-size: 90px;
+
+a {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.readings {
+  text-align: center;
+  width: 100%;
+  margin: 30px auto 0;
+  background-color: #FFFFFF;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: right;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #3d95dd;
+}
+
+header a {
+  font-size: 20px;
+  color: #FFFFFF;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 10px;
+  text-align: center;
+  display: inline-block;
+}
+
+header a:hover, .list-mode header a.hide-list:hover {
+  background-color: #45acff;
+}
+
+header a.hide-list {
+  background-color: #2e70a8;
+}
+
+.list-mode header a.hide-list {
+  background-color: #3f9ee8;
+}
+
+.list-mode header a.show-list {
+  background-color: #2e70a8;
+}
+
+.readings-container:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.readings-container {
+  padding: 10px 0 10px 10px;
+}
+
+.readings .reading-box {
+  float: left;
+  width: $box-width;
+  height: $box-height;
+  margin: 0 10px 10px 0;
+  background-color: #ffffff;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+}
+
+.readings.list-mode .readings-container {
+  padding-right: 10px;
+}
+
+.readings.list-mode .reading-box {
+  width: 45%;
+}
+
+.readings.list-mode .reading-box img {
+  float: left;
+}
+
+.readings.list-mode .reading-box > .reading-info {
+  float: right;
+}
+
+.readings.list-mode .reading-box > .reading-title:after {
+  content:"\a";
+}
+
+.readings-container img {
+  width: auto;
+  height: $reading-img-size;
+}
+
+header .reading-type {
+  color: white;
+  float: left;
+  pointer-events: none;
+  cursor: default;
+}
+
+.reading-box:hover {
+  border-radius: 10px;
+  border-color: #4277b4;
+  box-shadow: 0 0 5px #4277b4 inset;
 }
