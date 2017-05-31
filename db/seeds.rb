@@ -29,56 +29,43 @@
       bio: Faker::Lorem.paragraph
   )
 
+end
+
+3.times do
+  Category.create!(title: Faker::Book.genre)
+end
+
+authors = Author.all
+categories = Category.all
+
+for category in categories do
+  Faker::Number.between(1, 2).times do
+    category.children.create!(title: Faker::Book.genre)
+  end
+end
+
+categories = Category.all
+
+novels = Novel.all
+for novel in novels do
+  Faker::Number.between(1, 3).times do
+    novel.add_author authors.sample
+  end
+
+  Faker::Number.between(1, 3).times do
+    novel.add_category categories.sample
+  end
 
 end
 
-# books = Book.all()
-# for book in books do
-#   Faker::Number.between(1, 3).times do
-#     book.authors.create!(
-#         name: Faker::Name.unique.name,
-#         bio: Faker::Lorem.paragraph
-#     )
-#   end
-#
-#   Faker::Number.between(1, 3).times do
-#     user = User.find(Faker::Number.between(1, 100))
-#     book.comments.create!(
-#         comment: Faker::Lorem.paragraph,
-#         user: user
-#     )
-#   end
-#
-#   Faker::Number.between(1, 3).times do
-#     user = User.find(Faker::Number.between(1, 100))
-#     book.reviews.create!(
-#         vote: Faker::Number.decimal(1, 1),
-#         review: Faker::Lorem.paragraph,
-#         user: user
-#     )
-#
-#   end
-#
-# end
-#
-# 3.times do
-#   Category.create!(title: Faker::Book.genre)
-# end
-#
-# categories = Category.all()
-#
-# for category in categories do
-#   Faker::Number.between(1, 2).times do
-#     category.children.create!(title: Faker::Book.genre)
-#   end
-# end
-#
-# categories = Category.all()
-#
-# for book in books do
-#
-#   Faker::Number.between(1, 3).times do
-#     book.add_category(categories.sample)
-#   end
-#
-# end
+comics = Comic.all
+for comic in comics do
+  Faker::Number.between(1, 3).times do
+    comic.add_author authors.sample
+  end
+
+  Faker::Number.between(1, 3).times do
+    comic.add_category(categories.sample)
+
+  end
+end

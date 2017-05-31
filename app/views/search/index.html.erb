@@ -1,0 +1,191 @@
+<div class="container">
+
+  <div class="readings">
+
+    <header>
+      &nbsp;
+      <a class="reading-type">
+        Comic
+      </a>
+      <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+      <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+    </header>
+
+    <% if @comics.blank? %>
+        <h3>There is no Comics</h3>
+    <% else %>
+
+        <div class="readings-container">
+          <% @comics.each do |comic| %>
+              <div class="reading-box">
+
+                <%= link_to comic_path(comic) do %>
+                    <img src="/images/bookcover/cover1.jpg" alt="Comic cover">
+                <% end %>
+
+
+                <div class="reading-info">
+                  <% unless comic.chapters.blank? %>
+                      <div class="reading-chapter">
+                        <%= link_to chapter_path(comic.chapters.last) do %>
+                            Chap <%= comic.chapters.last.no %>
+                        <% end %>
+                      </div>
+                  <% end %>
+
+
+                  <div class="reading-title">
+                    <%= link_to comic_path(comic) do %>
+                        <%= comic.title %>
+                    <% end %>
+                  </div>
+                </div>
+
+
+              </div>
+          <% end %>
+    <% end %>
+
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="readings">
+    <header>
+      &nbsp;
+      <div class="reading-type">
+        Novel
+      </div>
+      <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+      <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+    </header>
+    <% if @novels.blank? %>
+        <h3>There is no Novels</h3>
+    <% else %>
+
+        <div class="readings-container">
+          <% @novels.each do |novel| %>
+              <div class="reading-box">
+
+                <%= link_to novel_path(novel) do %>
+                    <img src="/images/bookcover/cover1.jpg" alt="Novel cover">
+                <% end %>
+
+
+                <div class="reading-info">
+                  <% unless novel.chapters.blank? %>
+                      <div class="reading-chapter">
+                        <%= link_to chapter_path(novel.chapters.last) do %>
+                            Chap <%= novel.chapters.last.no %>
+                        <% end %>
+                      </div>
+                  <% end %>
+
+
+                  <div class="reading-title">
+                    <%= link_to novel_path(novel) do %>
+                        <%= novel.title %>
+                    <% end %>
+                  </div>
+                </div>
+
+
+              </div>
+          <% end %>
+    <% end %>
+
+    </div>
+
+
+  </div>
+</div>
+<div class="container">
+  <div class="readings">
+
+    <header>
+      &nbsp;
+      <a class="reading-type">
+        Category
+      </a>
+      <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+      <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+    </header>
+
+    <% if @categories.blank? %>
+        <h3>There is no category</h3>
+    <% else %>
+
+        <div class="readings-container">
+          <% @categories.each do |category| %>
+              <div class="reading-box">
+
+                <div class="reading-info">
+
+                  <div class="reading-title">
+
+                    <%= category.title %>
+
+                  </div>
+                </div>
+
+
+              </div>
+          <% end %>
+    <% end %>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+<div class="container">
+  <div class="readings">
+
+    <header>
+      &nbsp;
+      <a class="reading-type">
+        Author
+      </a>
+      <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+      <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+    </header>
+
+    <% if @authors.blank? %>
+        <h3>There is no author</h3>
+    <% else %>
+
+        <div class="readings-container">
+          <% @authors.each do |author| %>
+              <div class="reading-box">
+
+                <div class="reading-info">
+
+                  <div class="reading-title">
+                    <%= link_to author_path(author) do %>
+                        <%= author.name %>
+                    <% end %>
+                  </div>
+                </div>
+
+
+              </div>
+          <% end %>
+    <% end %>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+

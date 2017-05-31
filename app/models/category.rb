@@ -6,6 +6,7 @@ class Category < ApplicationRecord
   has_many :comics, :through => :category_readings, :source => :reading, :source_type => 'Comic'
   has_many :novels, :through => :category_readings, :source => :reading, :source_type => 'Novel'
 
+  scope :search, -> (keyword) { where("title LIKE ?" , "%#{keyword}%") }
   def add_comic(comic)
     comics << comic unless comics.include?(comic)
   end
@@ -13,4 +14,5 @@ class Category < ApplicationRecord
   def add_novel(novel)
     novels << novel unless novels.include?(novel)
   end
+
 end

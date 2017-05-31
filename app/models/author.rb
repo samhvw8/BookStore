@@ -7,6 +7,8 @@ class Author < ApplicationRecord
   validates :name, presence: true, allow_blank: false, uniqueness: true
   validates :bio, presence: true
 
+  scope :search, -> (keyword) { where("name LIKE ?" , "%#{keyword}%") }
+
   def add_comic(comic)
     comics << comic unless comics.include?(comic)
   end
@@ -14,4 +16,6 @@ class Author < ApplicationRecord
   def add_novel(novel)
     novels << novel unless novels.include?(novel)
   end
+
+
 end

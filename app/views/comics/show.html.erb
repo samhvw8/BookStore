@@ -119,24 +119,26 @@
 
     <h3>Review</h3>
 
-    <div class="review-form">
-      <%= form_tag comic_reviews_path(@comic), {:class => 'form'} do %>
+    <% if logged_in? %>
 
-          <div class="form-row">
-            <%= label_tag :vote %>
-            <%= number_field_tag :vote, min: 0, max: 10 %>
-          </div>
+        <div class="review-form">
+          <%= form_tag comic_reviews_path(@comic), {:class => 'form'} do %>
 
-          <div class="form-row">
-            <%= label_tag :review %>
-            <%= text_area_tag :review, 'Add review...', class: 'input' %>
-          </div>
-          <div class="form-row">
-            <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
-          </div>
-      <% end %>
-    </div>
+              <div class="form-row">
+                <%= label_tag :vote %>
+                <%= number_field_tag :vote, min: 0, max: 10 %>
+              </div>
 
+              <div class="form-row">
+                <%= label_tag :review %>
+                <%= text_area_tag :review, 'Add review...', class: 'input' %>
+              </div>
+              <div class="form-row">
+                <%= submit_tag 'Add Comment', class: 'btn btn-large btn-primary' %>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
 
 
     <% if @comic.reviews.blank? %>
@@ -172,11 +174,11 @@
 
                     <% if current_user?(review.user) or current_user.is_admin? %>
 
-                      <div class="review-actions">
-                        <%= link_to review_path(review), method: :delete, data: {confirm: 'Are You Sure?'} do %>
-                            <span class='glyphicon glyphicon-trash'></span>
-                        <% end %>
-                      </div>
+                        <div class="review-actions">
+                          <%= link_to review_path(review), method: :delete, data: {confirm: 'Are You Sure?'} do %>
+                              <span class='glyphicon glyphicon-trash'></span>
+                          <% end %>
+                        </div>
 
                     <% end %>
 
