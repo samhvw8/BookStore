@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :novels
     resources :authors
+    resources :categories
   end
 
 end
