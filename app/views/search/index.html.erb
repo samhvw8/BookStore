@@ -20,7 +20,13 @@
               <div class="reading-box">
 
                 <%= link_to comic_path(comic) do %>
-                    <img src="/images/bookcover/cover1.jpg" alt="Comic cover">
+
+                    <% if comic.cover.exists? %>
+                        <%= image_tag comic.cover.url %>
+                    <% else %>
+                        <img src="/images/not-found.jpg" alt="Comic cover">
+                    <% end %>
+
                 <% end %>
 
 
@@ -71,7 +77,11 @@
               <div class="reading-box">
 
                 <%= link_to novel_path(novel) do %>
-                    <img src="/images/bookcover/cover1.jpg" alt="Novel cover">
+                    <% if novel.cover.exists? %>
+                        <%= image_tag novel.cover.url %>
+                    <% else %>
+                        <img src="/images/not-found.jpg" alt="novel cover">
+                    <% end %>
                 <% end %>
 
 

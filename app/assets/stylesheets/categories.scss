@@ -1,3 +1,44 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.categories {
+  margin-top: 30px;
+  border-color: #4277b4;
+  box-shadow: 0 0 2px #4277b4 inset;
+  border-radius: 10px;
+  padding: 0px 0px 20px 0px;
+}
+
+.categories-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  color: white;
+  background: #2e70a8;
+  margin-bottom: 5px;
+}
+.category {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.category > a {
+  white-space: nowrap;
+  width: auto;
+  height: auto;
+  padding: 3px;
+  border-color: #59abff;
+  box-shadow: 0 0 2px #3684c7 inset;
+  border-radius: 10px;
+}
+
+.category > a:hover {
+  text-decoration: none;
+}
+
+.category a:hover {
+  color: white;
+  background-color: #3d95dd;
+}
+.category:after {
+  content: " ";
+}

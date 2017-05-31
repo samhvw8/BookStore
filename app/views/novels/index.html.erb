@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container read">
 
   <div class="readings">
     <header>
@@ -18,7 +18,11 @@
               <div class="reading-box">
 
                 <%= link_to novel_path(novel) do %>
-                    <img src="/images/bookcover/cover1.jpg" alt="Novel cover">
+                    <% if novel.cover.exists? %>
+                        <%= image_tag novel.cover.url %>
+                    <% else %>
+                        <img src="/images/not-found.jpg" alt="Comic cover">
+                    <% end %>
                 <% end %>
 
 
