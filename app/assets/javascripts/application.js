@@ -29,7 +29,9 @@ $(document).ready(function () {
             $('#add-author-modal').modal('hide');
             $('#new_author')[0].reset();
             $('.error-container').html('');
-            $('#add-author-btn').before(data.id);
+            var html = '<div class="col-xs-3"><input type="checkbox" name="authors[]" value="' +
+                data.id + '" checked>' + data.name +'</div>';
+            $('#add-author-btn').before(html);
         } else {
             // fail
             for (var property in data) {
@@ -39,6 +41,27 @@ $(document).ready(function () {
             }
         }
     }).on('ajax:error', function (e, xhr, status, error) {
-        $('#add-author-modal .error-container').html("Error: the name can't be blank");
-    })
+        $('#add-author-modal .error-container').html("Network error!");
+    });
+
+    $('#new_category').on('ajax:success', function (e, data, status, xhr) {
+        if (data.hasOwnProperty('id')) {
+            // success
+            $('#add-category-modal').modal('hide');
+            $('#new_category')[0].reset();
+            $('.error-container').html('');
+            var html = '<div class="col-xs-3"><input type="checkbox" name="categories[]" value="' +
+                data.id + '" checked>' + data.title +'</div>';
+            $('#add-category-btn').before(html);
+        } else {
+            // fail
+            for (var property in data) {
+                if (data.hasOwnProperty(property)) {
+                    $('#add-author-modal .error-container').append(property + ' ' + data[property] + '<br>' );
+                }
+            }
+        }
+    }).on('ajax:error', function (e, xhr, status, error) {
+        $('#add-category-modal .error-container').html("Network error!");
+    });
 });
