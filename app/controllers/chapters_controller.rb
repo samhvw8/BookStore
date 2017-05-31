@@ -17,7 +17,19 @@ class ChaptersController < ApplicationController
         sub = @chapter.novel.subscribes.where(user: current_user).first
       end
 
-      sub.update(current_chap: @chapter) unless sub.nil?
+      unless sub.nil?
+
+        if sub.current_chap.nil?
+          sub.update(current_chap: @chapter)
+        else
+          if @chapter.id > sub.current_chap.id
+            sub.update(current_chap: @chapter)
+          end
+        end
+
+
+      end
+
 
     end
 

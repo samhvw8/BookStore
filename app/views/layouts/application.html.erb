@@ -40,16 +40,26 @@
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                <%= current_user.name %> <span class="caret"></span>
+                <%= current_user.name %>
+                <span class="subscribe-notification" data-url=<%= get_notification_path %>> </span>
+                <span class="caret"></span>
               </a>
 
               <ul class="dropdown-menu" role="menu">
                 <li><%= link_to 'Profile', profile_path %></li>
-                <li><%= link_to 'Subscribes', subscribes_path %></li>
+                <li>
+                  <%= link_to subscribes_path do %>
+                      Subscribe
+                      <span class="subscribe-notification" data-url=<%= get_notification_path %>></span>
+                  <% end %>
 
-                <li>  <%= link_to 'Logout', logout_path, method: :delete %> </li>
+                </li>
+                <li>
+                  <%= link_to 'Logout', logout_path, method: :delete %>
+                </li>
               </ul>
             </li>
+
 
         <% else %>
             <li><%= link_to 'Sign Up', get_signup_path %></li>
@@ -62,8 +72,9 @@
     </div>
   </div>
 </nav>
+
 <% flash.each do |message_type, message| %>
-    <div class="container">
+    <div class=" container">
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     </div>
 <% end %>

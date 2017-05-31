@@ -25,7 +25,7 @@
           <th>Type</th>
           <th>Current Reading</th>
           <th>Newest Chap</th>
-          <th> </th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -38,13 +38,15 @@
 
                 <% if is_novel %>
 
+                    <%= link_to novel_path(subscribe.novel) do %>
+                        <%= subscribe.novel.title %>
+                    <% end %>
 
-                    <%= subscribe.novel.title %>
 
                 <% else %>
-
-                    <%= subscribe.comic.title %>
-
+                    <%= link_to comic_path(subscribe.comic) do %>
+                        <%= subscribe.comic.title %>
+                    <% end %>
                 <% end %>
               </td>
 
@@ -61,8 +63,17 @@
 
 
                 <div class="reading-title">
-                  <%= link_to chapter_path(subscribe.current_chap) do %>
-                      <%= subscribe.current_chap.no %>
+
+                  <% if subscribe.current_chap.nil? %>
+
+                      Not Read Yet
+
+                  <% else %>
+
+                      <%= link_to chapter_path(subscribe.current_chap) do %>
+                          <%= subscribe.current_chap.id %>. <%= subscribe.current_chap.no %>.<%= subscribe.current_chap.title %>
+                      <% end %>
+
                   <% end %>
                 </div>
 
@@ -73,8 +84,17 @@
 
 
                 <div class="reading-title">
-                  <%= link_to chapter_path(subscribe.newest_chap) do %>
-                      <%= subscribe.newest_chap.no %>
+
+                  <% if subscribe.newest_chap.nil? %>
+
+                      Not Have Yet
+
+                  <% else %>
+
+
+                      <%= link_to chapter_path(subscribe.newest_chap) do %>
+                          <%= subscribe.newest_chap.id %>. <%= subscribe.newest_chap.no %>.<%= subscribe.newest_chap.title %>
+                      <% end %>
                   <% end %>
                 </div>
 
@@ -85,8 +105,8 @@
 
 
                 <div class="reading-title">
-                  <%= link_to subscribe_path(subscribe), method: :delete do %>
-                    <span class='glyphicon glyphicon-trash'></span>
+                  <%= link_to subscribe_path(subscribe), method: :delete, data: {confirm: 'Are You Sure?'} do %>
+                      <span class='glyphicon glyphicon-trash'></span>
                   <% end %>
                 </div>
 
