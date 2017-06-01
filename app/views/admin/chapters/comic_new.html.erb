@@ -1,0 +1,25 @@
+<div class="container">
+  <% provide(:title, 'New chapter') %>
+  <% provide(:button_text, 'Submit') %>
+  <h2>Add new charter for <%= @comic.title %></h2>
+  <%= form_for @chapter, url: admin_comic_chapters_path(@comic), :multipart => true  do |f|%>
+      <%= render partial: 'shared/err', locals: {err: @chapter} %>
+
+      <div class="form-group">
+        <%= f.label :no %>
+        <%= f.text_field :no, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.file_field :content, multiple: true, accept: 'image/png,image/gif,image/jpeg', class: 'form-control' %>
+      </div>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <% end %>
+</div>

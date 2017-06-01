@@ -9,7 +9,11 @@
   </div>
   <div class="row">
     <% @chapters.each do |chapter| %>
-      <div class="col-xs-3"><%= "#{chapter.no}. #{chapter.title}" %></div>
+      <div class="col-xs-3">
+        <%= link_to chapter_path(chapter) do%>
+          <%= "#{chapter.no}. #{chapter.title}" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

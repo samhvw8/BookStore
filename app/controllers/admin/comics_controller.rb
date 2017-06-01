@@ -1,42 +1,43 @@
-class Admin::NovelsController < ApplicationController
+class Admin::ComicsController < ApplicationController
+  def index
+    @comics = Comic.order('id DESC').page(params[:page]).per(30)
+  end
+
   def new
-    @novel = Novel.new
+    @comic = Comic.new
     @category = Category.new
     @author = Author.new
     @categories = Category.all
     @authors = Author.all
   end
-
+  
   def create
-    novel_params = params.require('novel').permit(:title, :description)
-    @novel = Novel.new(novel_params)
+    comic_params = params.require('comic').permit(:title, :description)
+    @comic = Comic.new(comic_params)
 
-    if @novel.save
+    if @comic.save
       # add category and author
       params[:authors].each do |au_id|
         if Author.exists?(au_id)
           author = Author.find(au_id)
-          @novel.add_author(author)
+          @comic.add_author(author)
         end
       end
 
       params[:categories].each do |cat_id|
         if Category.exists?(cat_id)
           cat = Category.find(cat_id)
-          @novel.add_category(cat)
+          @comic.add_category(cat)
         end
       end
+
+      redirect_to admin_comics_path
     else
       @category = Category.new
       @author = Author.new
       @categories = Category.all
       @authors = Author.all
-      render 'admin/novels/new'
+      render 'admin/comics/new'
     end
   end
-
-  def index
-    @novels = Novel.order('id DESC').page(params[:page]).per(30)
-  end
-
 end
