@@ -1,0 +1,15 @@
+<div class="container read">
+  <h2><%= @novel.title %></h2>
+  <p><%= @novel.description %></p>
+  <h2>Chapters</h2>
+  <div class="pull-right">
+    <%= link_to new_admin_novel_chapter_path(@novel) do %>
+        <button type="button" class="btn btn-success">New Chapter</button>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @chapters.each do |chapter| %>
+      <div class="col-xs-3"><%= "#{chapter.no}. #{chapter.title}" %></div>
+    <% end %>
+  </div>
+</div>

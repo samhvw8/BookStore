@@ -35,12 +35,9 @@ class Admin::NovelsController < ApplicationController
     end
   end
 
-  def update
+  def index
+    @novels = Novel.paginate(:page => params[:page], :per_page => 30)
+
   end
 
-  def edit
-  end
-
-  def delete
-  end
 end
