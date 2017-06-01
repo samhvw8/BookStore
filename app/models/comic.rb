@@ -28,4 +28,12 @@ class Comic < ApplicationRecord
     categories << category unless categories.include?(category)
   end
 
+  def viewed
+    chapters.sum(:viewed)
+  end
+
+  def vote
+    reviews.average(:vote)
+  end
+
 end

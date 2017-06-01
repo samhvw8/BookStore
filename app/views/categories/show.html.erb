@@ -1,118 +1,71 @@
 <div class="container read">
 
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= @category.title %></h3>
+  <% cat = @category %>
+  <% cats = [] %>
+
+  <% until cat.parent.nil? do %>
+
+      <% cat = cat.parent %>
+      <% cats.insert(0, cat) %>
+
+  <% end %>
+
+
+  <ol class="breadcrumb">
+
+    <% unless cats.blank? %>
+
+        <% cats.each do |cate| %>
+            <li><%= link_to cate.title, category_path(cate) %></li>
+        <% end %>
+
+    <% end %>
+
+    <li class="active"><%= @category.title %></li>
+  </ol>
+
+
+  <div class="readings">
+
+    <header>
+
+      <a class="reading-type">
+        Child Category
+      </a>
+      <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+      <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+
+    </header>
+
+    <div class="readings-container">
+      <% unless @category.children.blank? %>
+
+          <% @category.children.each do |cate| %>
+              <div class="reading-box">
+
+                <div class="reading-info">
+
+                  <div class="reading-title">
+
+                    <%= link_to cate.title, category_path(cate) %>
+
+
+                  </div>
+                </div>
+
+
+              </div>
+          <% end %>
+      <% end %>
     </div>
+
+
+    <%= render partial: 'layouts/comics', locals: {comics: @category.comics} %>
+
+
+
+    <%= render partial: 'layouts/novels', locals: {novels: @category.novels} %>
+
+
   </div>
-
-  <% unless @category.comics.blank? %>
-
-      <div class="readings">
-        <header>
-          &nbsp;
-          <a class="reading-type">
-            Novel
-          </a>
-          <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
-          <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
-        </header>
-        <% if @category.comics.blank? %>
-
-        <% else %>
-
-            <div class="readings-container">
-              <% @category.comics.each do |comic| %>
-                  <div class="reading-box">
-
-                    <%= link_to comic_path(comic) do %>
-                        <% if comic.cover.exists? %>
-                            <%= image_tag comic.cover.url %>
-                        <% else %>
-                            <img src="/images/not-found.jpg" alt="Comic cover">
-                        <% end %>
-                    <% end %>
-
-
-                    <div class="reading-info">
-                      <% unless comic.chapters.blank? %>
-                          <div class="reading-chapter">
-                            <%= link_to chapter_path(comic.chapters.last) do %>
-                                Chap <%= comic.chapters.last.no %>
-                            <% end %>
-                          </div>
-                      <% end %>
-
-
-                      <div class="reading-title">
-                        <%= link_to comic_path(comic) do %>
-                            <%= comic.title %>
-                        <% end %>
-                      </div>
-                    </div>
-
-
-                  </div>
-              <% end %>
-        <% end %>
-
-        </div>
-      </div>
-  <% end %>
-
-
-  <% unless @category.novels.blank? %>
-
-      <div class="readings">
-        <header>
-          &nbsp;
-          <a class="reading-type">
-            Novel
-          </a>
-          <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
-          <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
-        </header>
-        <% if @category.novels.blank? %>
-
-        <% else %>
-
-            <div class="readings-container">
-              <% @category.novels.each do |novel| %>
-                  <div class="reading-box">
-
-                    <%= link_to novel_path(novel) do %>
-                        <% if novel.cover.exists? %>
-                            <%= image_tag novel.cover.url %>
-                        <% else %>
-                            <img src="/images/not-found.jpg" alt="novel cover">
-                        <% end %>
-                    <% end %>
-
-
-                    <div class="reading-info">
-                      <% unless novel.chapters.blank? %>
-                          <div class="reading-chapter">
-                            <%= link_to chapter_path(novel.chapters.last) do %>
-                                Chap <%= novel.chapters.last.no %>
-                            <% end %>
-                          </div>
-                      <% end %>
-
-
-                      <div class="reading-title">
-                        <%= link_to novel_path(novel) do %>
-                            <%= novel.title %>
-                        <% end %>
-                      </div>
-                    </div>
-
-
-                  </div>
-              <% end %>
-        <% end %>
-
-        </div>
-      </div>
-  <% end %>
-</div>
 </div>

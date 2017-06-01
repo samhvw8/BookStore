@@ -1,0 +1,70 @@
+<% unless comics.blank? %>
+
+    <div class="readings">
+      <header>
+        &nbsp;
+        <a class="reading-type">
+          Comic
+        </a>
+        <a href="javascript:void(0)" class="show-list"><i class="glyphicon glyphicon-list"></i></a>
+        <a href="javascript:void(0)" class="hide-list"><i class="glyphicon glyphicon-th"></i></a>
+      </header>
+      <% if comics.blank? %>
+
+      <% else %>
+
+          <div class="readings-container">
+            <% comics.each do |comic| %>
+                <div class="reading-box">
+
+                  <%= link_to comic_path(comic) do %>
+                      <% if comic.cover.exists? %>
+                          <%= image_tag comic.cover.url %>
+                      <% else %>
+                          <img src="/images/not-found.jpg" alt="Comic cover">
+                      <% end %>
+                  <% end %>
+
+
+                  <div class="reading-info">
+                    <% unless comic.chapters.blank? %>
+                        <div class="reading-chapter">
+                          <%= link_to chapter_path(comic.chapters.last) do %>
+                              Chap <%= comic.chapters.last.no %>
+                          <% end %>
+                        </div>
+                    <% end %>
+
+
+                    <div class="reading-title">
+                      <%= link_to comic_path(comic) do %>
+                          <%= comic.title %>
+                      <% end %>
+                    </div>
+
+                    <div class="reading-info hidden show-list-item">
+                      <%= link_to comic_path(comic) do %>
+                          viewed: <%= comic.viewed %>
+                      <% end %>
+                    </div>
+
+                    <div class="reading-info hidden show-list-item">
+                      <%= link_to comic_path(comic) do %>
+                          <% if comic.vote.nil? %>
+                              vote: 0 / 0 times
+                          <% else %>
+                              vote: <%= comic.vote %> / <%= comic.reviews.count %> times
+                          <% end %>
+
+                      <% end %>
+                    </div>
+                  </div>
+
+
+                </div>
+            <% end %>
+      <% end %>
+
+      </div>
+    </div>
+<% end %>
