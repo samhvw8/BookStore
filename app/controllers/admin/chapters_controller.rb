@@ -1,4 +1,4 @@
-class Admin::ChaptersController < ApplicationController
+class Admin::ChaptersController < Admin::AdminController
   def index
     if params.has_key?(:novel_id)
       @novel = Novel.find(params[:novel_id])
@@ -50,6 +50,7 @@ class Admin::ChaptersController < ApplicationController
               @chapter.images.create(image: image)
             }
           end
+          redirect_to admin_comic_chapters_path(@comic)
         else
           render 'admin/chapters/comic_new'
         end
