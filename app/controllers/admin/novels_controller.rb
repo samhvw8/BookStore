@@ -1,4 +1,4 @@
-class Admin::NovelsController < ApplicationController
+class Admin::NovelsController < Admin::AdminController
   def new
     @novel = Novel.new
     @category = Category.new
@@ -8,24 +8,29 @@ class Admin::NovelsController < ApplicationController
   end
 
   def create
-    novel_params = params.require('novel').permit(:title, :description)
+    novel_params = params.require('novel').permit(:title, :description, :cover)
     @novel = Novel.new(novel_params)
 
     if @novel.save
       # add category and author
-      params[:authors].each do |au_id|
-        if Author.exists?(au_id)
-          author = Author.find(au_id)
-          @novel.add_author(author)
+      if params[:authors]
+        params[:authors].each do |au_id|
+          if Author.exists?(au_id)
+            author = Author.find(au_id)
+            @novel.add_author(author)
+          end
         end
       end
 
-      params[:categories].each do |cat_id|
-        if Category.exists?(cat_id)
-          cat = Category.find(cat_id)
-          @novel.add_category(cat)
+      if params[:categories]
+        params[:categories].each do |cat_id|
+          if Category.exists?(cat_id)
+            cat = Category.find(cat_id)
+            @novel.add_category(cat)
+          end
         end
       end
+      redirect_to admin_novels_path
     else
       @category = Category.new
       @author = Author.new

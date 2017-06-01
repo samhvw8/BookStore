@@ -1,4 +1,4 @@
-class Admin::ComicsController < ApplicationController
+class Admin::ComicsController < Admin::AdminController
   def index
     @comics = Comic.order('id DESC').page(params[:page]).per(30)
   end
@@ -12,22 +12,26 @@ class Admin::ComicsController < ApplicationController
   end
   
   def create
-    comic_params = params.require('comic').permit(:title, :description)
+    comic_params = params.require('comic').permit(:title, :description, :cover)
     @comic = Comic.new(comic_params)
 
     if @comic.save
       # add category and author
-      params[:authors].each do |au_id|
-        if Author.exists?(au_id)
-          author = Author.find(au_id)
-          @comic.add_author(author)
+      if params[:authors]
+        params[:authors].each do |au_id|
+          if Author.exists?(au_id)
+            author = Author.find(au_id)
+            @comic.add_author(author)
+          end
         end
       end
 
-      params[:categories].each do |cat_id|
-        if Category.exists?(cat_id)
-          cat = Category.find(cat_id)
-          @comic.add_category(cat)
+      if params[:categories]
+        params[:categories].each do |cat_id|
+          if Category.exists?(cat_id)
+            cat = Category.find(cat_id)
+            @comic.add_category(cat)
+          end
         end
       end
 
