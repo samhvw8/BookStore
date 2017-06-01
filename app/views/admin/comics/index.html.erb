@@ -11,12 +11,12 @@
       </ul>
     </div>
     <div class="col-xs-9 col-md-10">
-      <h2>Novel Manager</h2>
+      <h2>Comic Manager</h2>
       <div class="row">
         <div class="col-xs-12">
           <div class="pull-right">
-            <%= link_to new_admin_novel_path do %>
-              <button type="button" class="btn btn-success">New Novel</button>
+            <%= link_to new_admin_comic_path do %>
+              <button type="button" class="btn btn-success">New Comic</button>
             <% end %>
           </div>
         </div>
@@ -31,16 +31,16 @@
           </tr>
           </thead>
           <tbody>
-            <% @novels.each do |novel| %>
-              <tr class='clickable-row' data-link="<%= admin_novel_chapters_path(novel) %>">
-                <td><%= novel.title %></td>
-                <td><%= novel.description.truncate(50) %></td>
+            <% @comics.each do |comic| %>
+              <tr class='clickable-row' data-link="<%= admin_comic_chapters_path(comic) %>">
+                <td><%= comic.title %></td>
+                <td><%= comic.description.truncate(50) %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-      <%= paginate @novels %>
+      <%= paginate @comics %>
     </div>
   </div>
 </div>

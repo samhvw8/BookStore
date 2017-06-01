@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       resources :chapters, only: [:new, :create, :index]
     end
 
-    resources :comics, only: [:new, :create, :show] do
+    resources :comics, only: [:new, :create, :show, :index] do
       resources :chapters, only: [:new, :create, :index]
     end
 

@@ -1,9 +1,9 @@
 <div class="container">
-  <% provide(:title, "New book") %>
+  <% provide(:title, 'New comic') %>
   <% provide(:button_text, 'Submit') %>
-  <h2>Add new novel</h2>
-  <%= form_for @novel, url: admin_novels_path do |f| %>
-      <%= render partial: 'shared/err', locals: {err: @novel} %>
+  <h2>Add new comic</h2>
+  <%= form_for @comic, url: admin_comics_path do |f| %>
+      <%= render partial: 'shared/err', locals: {err: @comic} %>
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, class: 'form-control' %>
