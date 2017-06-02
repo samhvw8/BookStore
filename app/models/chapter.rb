@@ -24,7 +24,7 @@ class Chapter < ApplicationRecord
         sub.update(available: true, newest_chap: self)
       end
     else
-      comic.subscribes.each do |sub|
+      novel.subscribes.each do |sub|
         sub.update(available: true, newest_chap: self)
       end
     end
